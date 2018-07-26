@@ -12,7 +12,7 @@ namespace ConsoleApp1
 
         static void Main()
         {
-            int roomNumber = 1;
+            int roomNumber = 2;
 
             var room = new DungeonRoom(10, 10, 1, 1);
 
