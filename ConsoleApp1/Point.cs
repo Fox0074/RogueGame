@@ -10,6 +10,23 @@ namespace ConsoleApp1
     {
         public int x { get; set; }
         public int y { get; set; }
+
+        public Point(Point point) 
+        {
+            x = point.x;
+            y = point.y;
+        }
+
+        public Point()
+        {
+
+        }
+
+        public Point(int y, int x)
+        {
+            this.x = x;
+            this.y = y;
+        }
     }
 
 }

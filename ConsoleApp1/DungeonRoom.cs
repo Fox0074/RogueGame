@@ -13,11 +13,12 @@ namespace ConsoleApp1
 
         private Random random = new Random();
 
-        public Point exitDoorCoordinate { get; set; }
-        public Point startDoorCoordinate { get; set; }
+        public ExitDoor exitDoorCoordinate { get; set; } = new ExitDoor();
+        public StartDoor  startDoorCoordinate { get; set; } = new StartDoor();
 
-        public DungeonRoom(int height, int width, 
-            int playerYCoordinate, int playerXCoordinate)
+        ////public Point lastPlayerCoordinate { get; set; }
+
+        public DungeonRoom(int height, int width)
         {
             currentCells = new IMapObject[height, width];
             cells = new IMapObject[height, width];
@@ -43,23 +44,17 @@ namespace ConsoleApp1
                     cells[i, j] = new EmptyFloor();
                 }
             }
-
-            exitDoorCoordinate = GenerateExitDoor();
-            cells[exitDoorCoordinate.y, exitDoorCoordinate.x] = new ExitDoor();
+            exitDoorCoordinate.position = GenerateExitDoor();
+            cells[exitDoorCoordinate.position.y, exitDoorCoordinate.position.x] = new ExitDoor();
 
 
             if (Program.player.numberCurrentRoom != 0)
             {
-                startDoorCoordinate = GenerateStartDoor();
-                cells[startDoorCoordinate.y, startDoorCoordinate.x] = new StartRoom();
+                startDoorCoordinate.position = GenerateStartDoor();
+                cells[startDoorCoordinate.position.y, startDoorCoordinate.position.x] = new StartDoor();
             }
 
-            CopyCells();
-
-            Program.player.position.x = playerXCoordinate;
-            Program.player.position.y = playerYCoordinate;
-
-            currentCells[playerXCoordinate, playerYCoordinate] = Program.player;            
+            CopyCells();          
         }
 
         /// <summary>
@@ -182,6 +177,8 @@ namespace ConsoleApp1
                 Console.WriteLine();              
             }
 
+            Console.WriteLine(Program.rooms.Count);
+
             CopyCells();
         }
 
@@ -198,5 +195,6 @@ namespace ConsoleApp1
                 }
             }
         }
+
     }
 }

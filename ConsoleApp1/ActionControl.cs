@@ -14,15 +14,20 @@ namespace ConsoleApp1
         /// <param name="move">Направление движения</param>
         static public void MoveCommand(direction move)
         {
+            Point nextPosition = new Point();
             switch (move)
             {
                 case direction.up:
                     if (!Program.rooms[Program.player.numberCurrentRoom].currentCells
                         [Program.player.position.y - 1, Program.player.position.x].barrier)
                     {
-                        Program.player.position.y--;
+                        nextPosition = Program.player.position;
+                        nextPosition.y = Program.player.position.y-1;
+
+                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x].OnTapAction.Invoke();
                     }
-                    Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y - 1, Program.player.position.x].OnTapAction.Invoke();
+                    else
+                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y - 1, Program.player.position.x].OnTapAction.Invoke();
                     break;
 
                 case direction.down:
@@ -30,8 +35,10 @@ namespace ConsoleApp1
                         [Program.player.position.y + 1, Program.player.position.x].barrier)
                     {
                         Program.player.position.y++;
+                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x].OnTapAction.Invoke();
                     }
-                    Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y + 1, Program.player.position.x].OnTapAction.Invoke();
+                    else
+                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y + 1, Program.player.position.x].OnTapAction.Invoke();
                     break;
 
                 case direction.right:
@@ -39,8 +46,10 @@ namespace ConsoleApp1
                         [Program.player.position.y, Program.player.position.x + 1].barrier)
                     {
                         Program.player.position.x++;
+                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x].OnTapAction.Invoke();
                     }
-                    Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x + 1].OnTapAction.Invoke();
+                    else
+                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x + 1].OnTapAction.Invoke();
                     break;
 
                 case direction.left:
@@ -48,11 +57,14 @@ namespace ConsoleApp1
                         [Program.player.position.y, Program.player.position.x - 1].barrier)
                     {
                         Program.player.position.x--;
+                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x].OnTapAction.Invoke();
                     }
-                    Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x - 1].OnTapAction.Invoke();
+                    else
+                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x - 1].OnTapAction.Invoke();
                     break;
             }
             Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x] = Program.player;
         }
+
     }
 }

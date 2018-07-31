@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class StartRoom : IMapObject
+    class StartDoor : BaseDoor, IMapObject
     {
         public string viewSymbol { get; set; }
         public bool barrier { get; set; }
         public Action OnTapAction { get; set; }
         public ConsoleColor symbolColor { get; set; }
 
-        public StartRoom()
+        public StartDoor()
         {
             viewSymbol = "@";
             symbolColor = ConsoleColor.Yellow;
@@ -22,9 +22,10 @@ namespace ConsoleApp1
         }
 
         public void OnTap()
-        {
+        {           
             Program.player.numberCurrentRoom--;
-            //Program.player.position = Program.rooms[Program.player.numberCurrentRoom].exitDoorCoordinate;
+
+            Program.player.position = Program.rooms[Program.player.numberCurrentRoom].exitDoorCoordinate.CheckDoor(Program.rooms[Program.player.numberCurrentRoom].currentCells);
         }
     }
 }

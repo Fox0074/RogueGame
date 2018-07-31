@@ -43,14 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionControl.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="MapObject\Doors\BaseDoor.cs" />
     <Compile Include="MapObject\EmptyFloor.cs" />
     <Compile Include="MapObject\Enemy.cs" />
     <Compile Include="IMapObject.cs" />
     <Compile Include="KeybordCommand.cs" />
-    <Compile Include="MapObject\ExitDoor.cs" />
+    <Compile Include="MapObject\Doors\ExitDoor.cs" />
     <Compile Include="MapObject\Player.cs" />
     <Compile Include="MapObject\RoomWall.cs" />
-    <Compile Include="MapObject\StartRoom.cs" />
+    <Compile Include="MapObject\Doors\StartRoom.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class ExitDoor : IMapObject
+    class ExitDoor : BaseDoor,IMapObject
     {
         public string viewSymbol { get; set; }
         public bool barrier { get; set; }
@@ -25,14 +25,16 @@ namespace ConsoleApp1
         {
             var randomSizeRoom = new Random();
 
-            Program.player.numberCurrentRoom++;
+            Program.player.numberCurrentRoom++;           
 
-            Program.rooms.Add(new DungeonRoom(
-                randomSizeRoom.Next(6, 21),
-                randomSizeRoom.Next(6, 21),
-                1, 1
-                ));
-            
+            if (Program.player.numberCurrentRoom > Program.rooms.Count - 1)
+            {
+
+                Program.rooms.Add(new DungeonRoom(
+                    randomSizeRoom.Next(6, 21),
+                    randomSizeRoom.Next(6, 21)));
+            }
+            Program.player.position = Program.rooms[Program.player.numberCurrentRoom].startDoorCoordinate.CheckDoor(Program.rooms[Program.player.numberCurrentRoom].currentCells);
         }
     }
 }
