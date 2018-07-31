@@ -9,22 +9,27 @@ namespace ConsoleApp1
     class Program
     {
         public static Player player = new Player();
+        public static List<DungeonRoom> rooms = new List<DungeonRoom>();
+        
 
         static void Main()
         {
-            int roomNumber = 2;
 
-            var room = new DungeonRoom(10, 10, 1, 1);
+            var randomSizeRoom = new Random();
 
-            player.room = room;
+            rooms.Add(new DungeonRoom(
+                randomSizeRoom.Next(6, 21),
+                randomSizeRoom.Next(6, 21),
+                1, 1
+                ));
+
+            player.numberCurrentRoom = 0;
 
             while (true)
             {
                 Console.Clear();
 
-                room.ViewRoom();
-
-                //room.RefreshCells();
+                rooms[player.numberCurrentRoom].ViewRoom();
 
                 KeybordCommand.DistributeCommand(Console.ReadKey().Key);
             }
