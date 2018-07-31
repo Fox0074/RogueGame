@@ -16,7 +16,7 @@ namespace ConsoleApp1
         public ExitDoor()
         {
             viewSymbol = "@";
-            symbolColor = ConsoleColor.White;
+            symbolColor = ConsoleColor.DarkRed;
             barrier = true;
             OnTapAction += OnTap;
         }
@@ -25,12 +25,14 @@ namespace ConsoleApp1
         {
             var randomSizeRoom = new Random();
 
+            Program.player.numberCurrentRoom++;
+
             Program.rooms.Add(new DungeonRoom(
                 randomSizeRoom.Next(6, 21),
                 randomSizeRoom.Next(6, 21),
                 1, 1
                 ));
-            Program.player.numberCurrentRoom++;
+            
         }
     }
 }

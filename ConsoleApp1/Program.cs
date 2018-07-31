@@ -10,10 +10,10 @@ namespace ConsoleApp1
     {
         public static Player player = new Player();
         public static List<DungeonRoom> rooms = new List<DungeonRoom>();
-        
 
         static void Main()
         {
+            player.numberCurrentRoom = 0;
 
             var randomSizeRoom = new Random();
 
@@ -27,8 +27,6 @@ namespace ConsoleApp1
 
             while (true)
             {
-                Console.Clear();
-
                 rooms[player.numberCurrentRoom].ViewRoom();
 
                 KeybordCommand.DistributeCommand(Console.ReadKey().Key);

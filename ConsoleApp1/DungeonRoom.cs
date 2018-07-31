@@ -11,8 +11,13 @@ namespace ConsoleApp1
         private IMapObject[,] cells { get ; set; }
         public IMapObject[,] currentCells { get; set; }
 
+        private Random random = new Random();
+
+        public Point exitDoorCoordinate { get; set; }
+        public Point startDoorCoordinate { get; set; }
+
         public DungeonRoom(int height, int width, 
-            int playerXCoordinate, int playerYCoordinate)
+            int playerYCoordinate, int playerXCoordinate)
         {
             currentCells = new IMapObject[height, width];
             cells = new IMapObject[height, width];
@@ -39,10 +44,15 @@ namespace ConsoleApp1
                 }
             }
 
-            cells[GenerateExitDoor().y, GenerateExitDoor().x] = new ExitDoor();
+            exitDoorCoordinate = GenerateExitDoor();
+            cells[exitDoorCoordinate.y, exitDoorCoordinate.x] = new ExitDoor();
 
-            if(Program.player.numberCurrentRoom != 0)
-                cells[GenerateStartDoor().y, GenerateStartDoor().x] = new StartRoom();
+
+            if (Program.player.numberCurrentRoom != 0)
+            {
+                startDoorCoordinate = GenerateStartDoor();
+                cells[startDoorCoordinate.y, startDoorCoordinate.x] = new StartRoom();
+            }
 
             CopyCells();
 
@@ -53,13 +63,11 @@ namespace ConsoleApp1
         }
 
         /// <summary>
-        /// Генерация двери выхода (Лучше сделать возвращением)
+        /// Генерация двери выхода
         /// </summary>
         private Point GenerateExitDoor()
         {
             var location = new Point();
-
-            var random = new Random();
 
             if (random.Next(0, 2) == 0)
             {
@@ -82,6 +90,7 @@ namespace ConsoleApp1
             {
                 if (random.Next(0, 2) == 0)
                 {
+                    Console.WriteLine("2 = " + random);
                     location.y = random.Next(1, cells.GetLength(0) - 2);
                     location.x = 0;
 
@@ -104,8 +113,6 @@ namespace ConsoleApp1
         {
             var location = new Point();
 
-            var random = new Random();
-
             if (random.Next(0, 2) == 0)
             {
                 if (random.Next(0, 2) == 0)
@@ -115,7 +122,7 @@ namespace ConsoleApp1
                         location.y = 0;
                         location.x = random.Next(1, cells.GetLength(1) - 2);
 
-                        if (cells[location.y, location.x].GetType().Name != "ExitDoor")
+                        if (cells[location.y, location.x].GetType() != typeof(ExitDoor))
                             return location;
                     }
                 }
@@ -126,7 +133,7 @@ namespace ConsoleApp1
                         location.y = cells.GetLength(0) - 1;
                         location.x = random.Next(1, cells.GetLength(1) - 2);
 
-                        if (cells[location.y, location.x].GetType().Name != "ExitDoor")
+                        if (cells[location.y, location.x].GetType() != typeof(ExitDoor))
                             return location;
                     }
                 }
@@ -140,7 +147,7 @@ namespace ConsoleApp1
                         location.y = random.Next(1, cells.GetLength(0) - 2);
                         location.x = 0;
 
-                        if (cells[location.y, location.x].GetType().Name != "ExitDoor")
+                        if (cells[location.y, location.x].GetType() != typeof(ExitDoor))
                             return location;
                     }
                 }
@@ -151,7 +158,7 @@ namespace ConsoleApp1
                         location.y = random.Next(1, cells.GetLength(0) - 2);
                         location.x = cells.GetLength(1) - 1;
 
-                        if (cells[location.y, location.x].GetType().Name != "ExitDoor")
+                        if (cells[location.y, location.x].GetType() != typeof(ExitDoor))
                             return location;
                     }
                 }
@@ -162,7 +169,9 @@ namespace ConsoleApp1
         /// Вывод комнаты на консоль
         /// </summary>
         public void ViewRoom()
-        {    
+        {
+            Console.Clear();
+
             for (int i = 0; i < currentCells.GetLength(0); i++)
             {
                 for (int j = 0; j < currentCells.GetLength(1); j++)

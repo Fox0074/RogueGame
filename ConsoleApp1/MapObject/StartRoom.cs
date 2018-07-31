@@ -16,7 +16,7 @@ namespace ConsoleApp1
         public StartRoom()
         {
             viewSymbol = "@";
-            symbolColor = ConsoleColor.Red;
+            symbolColor = ConsoleColor.Yellow;
             barrier = true;
             OnTapAction += OnTap;
         }
@@ -24,6 +24,7 @@ namespace ConsoleApp1
         public void OnTap()
         {
             Program.player.numberCurrentRoom--;
+            //Program.player.position = Program.rooms[Program.player.numberCurrentRoom].exitDoorCoordinate;
         }
     }
 }
