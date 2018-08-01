@@ -42,23 +42,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionControl.cs" />
-    <Compile Include="EventLog.cs" />
-    <Compile Include="Global.cs" />
+    <Compile Include="Engine\ActionControl.cs" />
+    <Compile Include="Engine\Graphics\UserInterface.cs" />
+    <Compile Include="Engine\Log\EventLog.cs" />
+    <Compile Include="Framework\Variables.cs" />
+    <Compile Include="Engine\Log\LogObject.cs" />
     <Compile Include="MapObject\Doors\BaseDoor.cs" />
     <Compile Include="MapObject\EmptyFloor.cs" />
     <Compile Include="MapObject\Enemy.cs" />
-    <Compile Include="IMapObject.cs" />
-    <Compile Include="KeybordCommand.cs" />
+    <Compile Include="Interfaces\IMapObject.cs" />
+    <Compile Include="Engine\KeybordCommand.cs" />
     <Compile Include="MapObject\Doors\ExitDoor.cs" />
     <Compile Include="MapObject\Player.cs" />
     <Compile Include="MapObject\RoomWall.cs" />
     <Compile Include="MapObject\Doors\StartRoom.cs" />
-    <Compile Include="Point.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Framework\Point.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DungeonRoom.cs" />
-    <Compile Include="ViewOnConsole.cs" />
+    <Compile Include="Factory\DungeonRoom.cs" />
+    <Compile Include="Engine\Graphics\ViewOnConsole.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

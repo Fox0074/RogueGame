@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Global;
+using static ConsoleApp1.Variables;
 namespace ConsoleApp1
 {
-    class Program
-    {        
+    class Game
+    {
+        static public Action Step = delegate { };
+
         static public void Initialization()
         {
-           
-            var randomSizeRoom = new Random();
+             var randomSizeRoom = new Random();
 
             rooms.Add(new DungeonRoom(
                 randomSizeRoom.Next(6, 21),
@@ -22,10 +23,10 @@ namespace ConsoleApp1
 
             player.numberCurrentRoom = 0;
             player.position = new Point(
-                (rooms[0].currentCells.GetLength(0) - 1)/2,
-                (rooms[0].currentCells.GetLength(1) - 1)/2);
+                (DungeonRoom.currentCells.GetLength(0) - 1)/2,
+                (DungeonRoom.currentCells.GetLength(1) - 1)/2);
 
-            rooms[0].currentCells[player.position.y, player.position.x] = player;
+            DungeonRoom.currentCells[player.position.y, player.position.x] = player;
 
             Console.CursorVisible = false;
         }
@@ -38,8 +39,8 @@ namespace ConsoleApp1
             while (true)
             {
                 ViewOnConsole.ViewGame();
-
-                KeybordCommand.DistributeCommand(Console.ReadKey().Key);
+                Step.Invoke();
+                KeybordCommand.DistributeCommand(Console.ReadKey().Key);             
             }
         }
     }

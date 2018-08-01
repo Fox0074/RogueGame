@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Global;
+using static ConsoleApp1.Variables;
 
 namespace ConsoleApp1
 {
@@ -35,7 +35,7 @@ namespace ConsoleApp1
                     randomSizeRoom.Next(6, 21),
                     randomSizeRoom.Next(6, 21)));
             }
-            player.position = rooms[player.numberCurrentRoom].startDoorCoordinate.CheckDoor(rooms[player.numberCurrentRoom].currentCells);
+            player.position = rooms[player.numberCurrentRoom].startDoorCoordinate.CheckDoor(DungeonRoom.currentCells);
         }
     }
 }

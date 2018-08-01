@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Global;
+using static ConsoleApp1.Variables;
 
 namespace ConsoleApp1
 {
     class DungeonRoom
     {
         private IMapObject[,] cells { get ; set; }
-        public IMapObject[,] currentCells { get; set; }
+        public static IMapObject[,] currentCells { get; set; }
 
         private Random random = new Random();
 
@@ -19,7 +19,7 @@ namespace ConsoleApp1
 
         public DungeonRoom(int height, int width)
         {
-            currentCells = new IMapObject[height, width];
+            
             cells = new IMapObject[height, width];
 
             for (int i = 0; i < height; i++)
@@ -53,7 +53,9 @@ namespace ConsoleApp1
                 cells[startDoorCoordinate.position.y, startDoorCoordinate.position.x] = new StartDoor();
             }
 
-            CopyCells();          
+            CopyCells();   
+            
+            Game.Step += CopyCells;
         }
 
         /// <summary>
@@ -160,32 +162,11 @@ namespace ConsoleApp1
         }
 
         /// <summary>
-        /// Вывод комнаты на консоль
-        /// </summary>
-        public List<string> GetRoom()
-        {
-            List<string> result = new List<string>();
-
-            for (int i = 0; i < currentCells.GetLength(0); i++)
-            {
-                string stroke = "";
-                for (int j = 0; j < currentCells.GetLength(1); j++)
-                {
-                    //Console.ForegroundColor = currentCells[i, j].symbolColor;
-                    stroke += currentCells[i, j].viewSymbol + " ";                                  
-                }
-                result.Add(stroke + "\n");
-            }
-            CopyCells();
-
-            return result;
-        }
-
-        /// <summary>
         /// Обнавление карты после действия
         /// </summary>
         private void CopyCells()
         {
+            currentCells = new IMapObject[cells.GetLength(0), cells.GetLength(1)];
             for (int i = 0; i < cells.GetLength(0); i++)
             {
                 for (int j = 0; j < cells.GetLength(1); j++)

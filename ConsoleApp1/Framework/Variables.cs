@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Global
+    class Variables
     {
         public static Player player = new Player();
         public static List<DungeonRoom> rooms = new List<DungeonRoom>();
