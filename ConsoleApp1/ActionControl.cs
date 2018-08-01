@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp1.Global;
 
 namespace ConsoleApp1
 {
@@ -15,55 +16,67 @@ namespace ConsoleApp1
         static public void MoveCommand(direction move)
         {
             Point nextPosition = new Point();
+
             switch (move)
             {
                 case direction.up:
-                    if (!Program.rooms[Program.player.numberCurrentRoom].currentCells
-                        [Program.player.position.y - 1, Program.player.position.x].barrier)
+                    if (!rooms[player.numberCurrentRoom].currentCells
+                        [player.position.y - 1, player.position.x].barrier)
                     {
-                        nextPosition = Program.player.position;
-                        nextPosition.y = Program.player.position.y-1;
+                        nextPosition = player.position;
+                        nextPosition.y = player.position.y-1;
 
-                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x].OnTapAction.Invoke();
+                        EventLog.doEvent("Игрок", "Движение вверх");
+
+                        rooms[player.numberCurrentRoom].currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
                     }
                     else
-                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y - 1, Program.player.position.x].OnTapAction.Invoke();
+                        rooms[player.numberCurrentRoom].currentCells[player.position.y - 1, player.position.x].OnTapAction.Invoke();
                     break;
 
                 case direction.down:
-                    if (!Program.rooms[Program.player.numberCurrentRoom].currentCells
-                        [Program.player.position.y + 1, Program.player.position.x].barrier)
+                    if (!rooms[player.numberCurrentRoom].currentCells
+                        [player.position.y + 1, player.position.x].barrier)
                     {
-                        Program.player.position.y++;
-                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x].OnTapAction.Invoke();
+                        player.position.y++;
+
+                        EventLog.doEvent("Игрок", "Движение вниз");
+
+                        rooms[player.numberCurrentRoom].currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
                     }
                     else
-                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y + 1, Program.player.position.x].OnTapAction.Invoke();
+                        rooms[player.numberCurrentRoom].currentCells[player.position.y + 1, player.position.x].OnTapAction.Invoke();
                     break;
 
                 case direction.right:
-                    if (!Program.rooms[Program.player.numberCurrentRoom].currentCells
-                        [Program.player.position.y, Program.player.position.x + 1].barrier)
+                    if (!rooms[player.numberCurrentRoom].currentCells
+                        [player.position.y, player.position.x + 1].barrier)
                     {
-                        Program.player.position.x++;
-                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x].OnTapAction.Invoke();
+                        player.position.x++;
+
+                        EventLog.doEvent("Игрок", "Движение вправо");
+
+                        rooms[player.numberCurrentRoom].currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
                     }
                     else
-                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x + 1].OnTapAction.Invoke();
+                        rooms[player.numberCurrentRoom].currentCells[player.position.y, player.position.x + 1].OnTapAction.Invoke();
                     break;
 
                 case direction.left:
-                    if (!Program.rooms[Program.player.numberCurrentRoom].currentCells
-                        [Program.player.position.y, Program.player.position.x - 1].barrier)
+                    if (!rooms[player.numberCurrentRoom].currentCells
+                        [player.position.y, player.position.x - 1].barrier)
                     {
-                        Program.player.position.x--;
-                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x].OnTapAction.Invoke();
+                        player.position.x--;
+
+                        EventLog.doEvent("Игрок", "Движение влево");
+
+                        rooms[player.numberCurrentRoom].currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
                     }
                     else
-                        Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x - 1].OnTapAction.Invoke();
+                        rooms[player.numberCurrentRoom].currentCells[player.position.y, player.position.x - 1].OnTapAction.Invoke();
                     break;
             }
-            Program.rooms[Program.player.numberCurrentRoom].currentCells[Program.player.position.y, Program.player.position.x] = Program.player;
+            rooms[player.numberCurrentRoom].currentCells[player.position.y, player.position.x] = player;
         }
 
     }

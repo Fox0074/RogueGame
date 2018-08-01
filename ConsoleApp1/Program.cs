@@ -7,10 +7,7 @@ using static ConsoleApp1.Global;
 namespace ConsoleApp1
 {
     class Program
-    {
-        public static Player player = new Player();
-        public static List<DungeonRoom> rooms = new List<DungeonRoom>();
-
+    {        
         static public void Initialization()
         {
            
@@ -38,7 +35,7 @@ namespace ConsoleApp1
 
             while (true)
             {
-                rooms[player.numberCurrentRoom].ViewRoom();
+                ViewOnConsole.ViewGame();
 
                 KeybordCommand.DistributeCommand(Console.ReadKey().Key);
             }

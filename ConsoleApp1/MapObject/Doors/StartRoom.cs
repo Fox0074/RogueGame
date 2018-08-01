@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp1.Global;
 
 namespace ConsoleApp1
 {
@@ -23,9 +24,9 @@ namespace ConsoleApp1
 
         public void OnTap()
         {           
-            Program.player.numberCurrentRoom--;
+            player.numberCurrentRoom--;
 
-            Program.player.position = Program.rooms[Program.player.numberCurrentRoom].exitDoorCoordinate.CheckDoor(Program.rooms[Program.player.numberCurrentRoom].currentCells);
+            player.position = rooms[player.numberCurrentRoom].exitDoorCoordinate.CheckDoor(rooms[player.numberCurrentRoom].currentCells);
         }
     }
 }

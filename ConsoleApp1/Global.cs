@@ -8,6 +8,7 @@ namespace ConsoleApp1
 {
     class Global
     {
-        public static int kek { get; set; }
+        public static Player player = new Player();
+        public static List<DungeonRoom> rooms = new List<DungeonRoom>();
     }
 }

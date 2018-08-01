@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp1.Global;
 
 namespace ConsoleApp1
 {
@@ -25,16 +26,16 @@ namespace ConsoleApp1
         {
             var randomSizeRoom = new Random();
 
-            Program.player.numberCurrentRoom++;           
+            player.numberCurrentRoom++;           
 
-            if (Program.player.numberCurrentRoom > Program.rooms.Count - 1)
+            if (player.numberCurrentRoom > rooms.Count - 1)
             {
 
-                Program.rooms.Add(new DungeonRoom(
+                rooms.Add(new DungeonRoom(
                     randomSizeRoom.Next(6, 21),
                     randomSizeRoom.Next(6, 21)));
             }
-            Program.player.position = Program.rooms[Program.player.numberCurrentRoom].startDoorCoordinate.CheckDoor(Program.rooms[Program.player.numberCurrentRoom].currentCells);
+            player.position = rooms[player.numberCurrentRoom].startDoorCoordinate.CheckDoor(rooms[player.numberCurrentRoom].currentCells);
         }
     }
 }

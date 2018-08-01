@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp1.Global;
 
 namespace ConsoleApp1
 {
@@ -15,8 +16,6 @@ namespace ConsoleApp1
 
         public ExitDoor exitDoorCoordinate { get; set; } = new ExitDoor();
         public StartDoor  startDoorCoordinate { get; set; } = new StartDoor();
-
-        ////public Point lastPlayerCoordinate { get; set; }
 
         public DungeonRoom(int height, int width)
         {
@@ -48,7 +47,7 @@ namespace ConsoleApp1
             cells[exitDoorCoordinate.position.y, exitDoorCoordinate.position.x] = new ExitDoor();
 
 
-            if (Program.player.numberCurrentRoom != 0)
+            if (player.numberCurrentRoom != 0)
             {
                 startDoorCoordinate.position = GenerateStartDoor();
                 cells[startDoorCoordinate.position.y, startDoorCoordinate.position.x] = new StartDoor();
@@ -176,9 +175,6 @@ namespace ConsoleApp1
                 }
                 Console.WriteLine();              
             }
-
-            Console.WriteLine(Program.rooms.Count);
-
             CopyCells();
         }
 
