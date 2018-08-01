@@ -15,18 +15,21 @@ namespace ConsoleApp1
             eventLog.Add(name + ": " + _event);
         }
 
-        public static void ViewLog()
+        public static List<string> GetLastLog()
         {
+            List<string> result = new List<string>();
             if (eventLog.Count <= 10)
             {
                 foreach (string _event in eventLog)
-                    Console.WriteLine(_event);
+                    result.Add(_event);
             }
             else
             {
                 for (int i = eventLog.Count - 10; i < eventLog.Count; i++)
-                    Console.WriteLine(eventLog[i]);
+                    result.Add(eventLog[i]);
             }
+
+            return result;
         }      
     }
 }

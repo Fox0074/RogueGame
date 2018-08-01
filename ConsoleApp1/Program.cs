@@ -26,6 +26,8 @@ namespace ConsoleApp1
                 (rooms[0].currentCells.GetLength(1) - 1)/2);
 
             rooms[0].currentCells[player.position.y, player.position.x] = player;
+
+            Console.CursorVisible = false;
         }
         
 

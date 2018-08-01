@@ -162,20 +162,23 @@ namespace ConsoleApp1
         /// <summary>
         /// Вывод комнаты на консоль
         /// </summary>
-        public void ViewRoom()
+        public List<string> GetRoom()
         {
-            Console.Clear();
+            List<string> result = new List<string>();
 
             for (int i = 0; i < currentCells.GetLength(0); i++)
             {
+                string stroke = "";
                 for (int j = 0; j < currentCells.GetLength(1); j++)
                 {
-                    Console.ForegroundColor = currentCells[i, j].symbolColor;
-                    Console.Write(currentCells[i, j].viewSymbol + " ");                   
+                    //Console.ForegroundColor = currentCells[i, j].symbolColor;
+                    stroke += currentCells[i, j].viewSymbol + " ";                                  
                 }
-                Console.WriteLine();              
+                result.Add(stroke + "\n");
             }
             CopyCells();
+
+            return result;
         }
 
         /// <summary>
