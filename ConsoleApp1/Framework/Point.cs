@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Point
+    public class Point
     {
         public int x { get; set; }
         public int y { get; set; }

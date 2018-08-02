@@ -12,13 +12,16 @@ namespace ConsoleApp1
         public Action OnTapAction { get; set; }
         public bool barrier { get; set; }
         public ConsoleColor symbolColor { get; set; }
+        public Point position { get ; set; }
 
-        public EmptyFloor()
+
+        public EmptyFloor(Point position)
         {
             viewSymbol = "@";
             symbolColor = ConsoleColor.White;
             barrier = false;
             OnTapAction += OnTap;
+            this.position = position;
         }
 
         public void OnTap()

@@ -8,7 +8,7 @@ namespace ConsoleApp1
 {
     class Variables
     {
-        public static Player player = new Player();
+        public static Player player;
         public static List<DungeonRoom> rooms = new List<DungeonRoom>();
     }
 }

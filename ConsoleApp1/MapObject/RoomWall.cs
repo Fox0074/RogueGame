@@ -12,8 +12,9 @@ namespace ConsoleApp1
         public bool barrier { get; set; }
         public Action OnTapAction { get; set; }
         public ConsoleColor symbolColor { get; set; }
+        public Point position { get; set; }
 
-        public RoomWall()
+        public RoomWall(Point position)
         {
             viewSymbol = "#";
             symbolColor = ConsoleColor.DarkGreen;
@@ -23,7 +24,7 @@ namespace ConsoleApp1
 
         public void OnTap()
         {
-
+            this.position = position;
         }
     }
 }

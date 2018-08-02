@@ -14,19 +14,20 @@ namespace ConsoleApp1
         public Action OnTapAction { get; set; }
         public ConsoleColor symbolColor { get; set; }
 
-        public StartDoor()
+        public StartDoor(Point position)
         {
             viewSymbol = "@";
             symbolColor = ConsoleColor.Yellow;
             barrier = true;
             OnTapAction += OnTap;
+            this.position = position;
         }
 
         public void OnTap()
         {           
             player.numberCurrentRoom--;
 
-            player.position = rooms[player.numberCurrentRoom].exitDoorCoordinate.CheckDoor(DungeonRoom.currentCells);
+            player.position = rooms[player.numberCurrentRoom].exitDoor.CheckDoor(DungeonRoom.currentCells);
         }
     }
 }

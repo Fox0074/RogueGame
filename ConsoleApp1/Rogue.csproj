@@ -43,10 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine\ActionControl.cs" />
+    <Compile Include="Engine\Graphics\FillMap.cs" />
     <Compile Include="Engine\Graphics\UserInterface.cs" />
-    <Compile Include="Engine\Log\EventLog.cs" />
     <Compile Include="Framework\Variables.cs" />
-    <Compile Include="Engine\Log\LogObject.cs" />
     <Compile Include="MapObject\Doors\BaseDoor.cs" />
     <Compile Include="MapObject\EmptyFloor.cs" />
     <Compile Include="MapObject\Enemy.cs" />
@@ -64,6 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Engine\Log\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

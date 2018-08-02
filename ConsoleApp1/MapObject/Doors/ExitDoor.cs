@@ -14,12 +14,13 @@ namespace ConsoleApp1
         public Action OnTapAction { get; set; }
         public ConsoleColor symbolColor { get; set; }
 
-        public ExitDoor()
+        public ExitDoor(Point position)
         {
             viewSymbol = "@";
             symbolColor = ConsoleColor.DarkRed;
             barrier = true;
             OnTapAction += OnTap;
+            this.position = position;
         }
 
         public void OnTap()
@@ -35,7 +36,7 @@ namespace ConsoleApp1
                     randomSizeRoom.Next(6, 21),
                     randomSizeRoom.Next(6, 21)));
             }
-            player.position = rooms[player.numberCurrentRoom].startDoorCoordinate.CheckDoor(DungeonRoom.currentCells);
+            player.position = rooms[player.numberCurrentRoom].startDoor.CheckDoor(DungeonRoom.currentCells);
         }
     }
 }

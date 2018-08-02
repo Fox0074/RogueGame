@@ -9,39 +9,50 @@ namespace ConsoleApp1
     class Game
     {
         static public Action Step = delegate { };
+        static public FillMap filling = new FillMap();
 
         static public void Initialization()
         {
              var randomSizeRoom = new Random();
 
+            player = new Player();
             rooms.Add(new DungeonRoom(
                 randomSizeRoom.Next(6, 21),
                 randomSizeRoom.Next(6, 21)
                 ));
 
-            player.numberCurrentRoom = 0;
+            DungeonRoom.currentCells = rooms[0].GetCells();
 
-            player.numberCurrentRoom = 0;
+            filling.AddObject(player);
+
+            player.numberCurrentRoom = 0;       
             player.position = new Point(
                 (DungeonRoom.currentCells.GetLength(0) - 1)/2,
                 (DungeonRoom.currentCells.GetLength(1) - 1)/2);
 
-            DungeonRoom.currentCells[player.position.y, player.position.x] = player;
 
-            Console.CursorVisible = false;
-        }
-        
+            Console.CursorVisible = false;            
+        }        
 
         static void Main()
         {
+            
             Initialization();
 
             while (true)
             {
-                ViewOnConsole.ViewGame();
+                ClearMap();
+                filling.Fill();
+                ViewOnConsole.ViewGame();               
+                KeybordCommand.DistributeCommand(Console.ReadKey().Key);
+                //GameReaction();
                 Step.Invoke();
-                KeybordCommand.DistributeCommand(Console.ReadKey().Key);             
             }
+        }
+
+        private static void ClearMap()
+        {
+            rooms[player.numberCurrentRoom].CopyCells();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace ConsoleApp1
                     {
                         player.position.y--;
 
-                        EventLog.doEvent("Игрок движение вверх", ConsoleColor.DarkGreen);
+                        //EventLog.doEvent("Игрок движение вверх", ConsoleColor.DarkGreen);
 
                         DungeonRoom.currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
                     }
@@ -39,7 +39,7 @@ namespace ConsoleApp1
                     {
                         player.position.y++;
 
-                        EventLog.doEvent("Игрок движение вниз", ConsoleColor.DarkGreen);
+                        //EventLog.doEvent("Игрок движение вниз", ConsoleColor.DarkGreen);
 
                         DungeonRoom.currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
                     }
@@ -53,7 +53,7 @@ namespace ConsoleApp1
                     {
                         player.position.x++;
 
-                        EventLog.doEvent("Игрок движение вправо", ConsoleColor.DarkGreen);
+                        //EventLog.doEvent("Игрок движение вправо", ConsoleColor.DarkGreen);
 
                         DungeonRoom.currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
                     }
@@ -67,7 +67,7 @@ namespace ConsoleApp1
                     {
                         player.position.x--;
 
-                        EventLog.doEvent("Игрок движение влево", ConsoleColor.DarkGreen);
+                        //EventLog.doEvent("Игрок движение влево", ConsoleColor.DarkGreen);
 
                         DungeonRoom.currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
                     }
@@ -75,7 +75,6 @@ namespace ConsoleApp1
                         DungeonRoom.currentCells[player.position.y, player.position.x - 1].OnTapAction.Invoke();
                     break;
             }
-            DungeonRoom.currentCells[player.position.y, player.position.x] = player;
         }
 
     }

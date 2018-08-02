@@ -17,10 +17,11 @@ namespace ConsoleApp1
         public bool barrier { get; set; }
         public Action OnTapAction { get; set; }
         public ConsoleColor symbolColor { get; set; }
+        public Point position { get; set; }
 
-        public Enemy()
+        public Enemy(Point position)
         {
-
+            this.position = position;
         }
     }
 }

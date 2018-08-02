@@ -10,12 +10,12 @@ namespace ConsoleApp1
     class DungeonRoom
     {
         private IMapObject[,] cells { get ; set; }
-        public static IMapObject[,] currentCells { get; set; }
+        public static IMapObject[,] currentCells;
 
         private Random random = new Random();
 
-        public ExitDoor exitDoorCoordinate { get; set; } = new ExitDoor();
-        public StartDoor  startDoorCoordinate { get; set; } = new StartDoor();
+        public ExitDoor exitDoor { get; set; } 
+        public StartDoor  startDoor { get; set; } 
 
         public DungeonRoom(int height, int width)
         {
@@ -24,38 +24,35 @@ namespace ConsoleApp1
 
             for (int i = 0; i < height; i++)
             {
-                cells[i, 0] = new RoomWall();
+                cells[i, 0] = new RoomWall(new Point(i, 0));
 
-                cells[i, width - 1] = new RoomWall();
+                cells[i, width - 1] = new RoomWall(new Point(i, width - 1));
             }
 
             for (int i = 0; i < width; i++)
             {
-                cells[0, i] = new RoomWall();
+                cells[0, i] = new RoomWall(new Point(0, i));
 
-                cells[height - 1, i] = new RoomWall();
+                cells[height - 1, i] = new RoomWall(new Point(height - 1, i));
             }
            
             for (int i = 1; i < height - 1; i++)
             {
                 for (int j = 1; j < width - 1; j++)
                 {
-                    cells[i, j] = new EmptyFloor();
+                    cells[i, j] = new EmptyFloor(new Point(i, j));
                 }
             }
-            exitDoorCoordinate.position = GenerateExitDoor();
-            cells[exitDoorCoordinate.position.y, exitDoorCoordinate.position.x] = new ExitDoor();
 
 
+            exitDoor = new ExitDoor(GenerateExitDoor());
+            cells[exitDoor.position.y, exitDoor.position.x] = exitDoor;
             if (player.numberCurrentRoom != 0)
             {
-                startDoorCoordinate.position = GenerateStartDoor();
-                cells[startDoorCoordinate.position.y, startDoorCoordinate.position.x] = new StartDoor();
+                startDoor = new StartDoor(GenerateStartDoor());
+                cells[startDoor.position.y, startDoor.position.x] = startDoor;
             }
-
-            CopyCells();   
-            
-            Game.Step += CopyCells;
+                      
         }
 
         /// <summary>
@@ -164,7 +161,7 @@ namespace ConsoleApp1
         /// <summary>
         /// Обнавление карты после действия
         /// </summary>
-        private void CopyCells()
+        public void CopyCells()
         {
             currentCells = new IMapObject[cells.GetLength(0), cells.GetLength(1)];
             for (int i = 0; i < cells.GetLength(0); i++)
@@ -174,6 +171,11 @@ namespace ConsoleApp1
                     currentCells[i, j] = cells[i, j];
                 }
             }
+        }
+
+        public IMapObject[,] GetCells()
+        {
+            return cells;
         }
 
     }

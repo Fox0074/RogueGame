@@ -8,7 +8,7 @@ namespace ConsoleApp1
 {
     static class UserInterface
     {
-        public static Player player = new Player();
+        public static Player player;
         //public static int roomsCount = new int();
 
         static UserInterface()
