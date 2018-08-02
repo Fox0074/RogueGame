@@ -20,18 +20,20 @@ namespace ConsoleApp1
             symbolColor = ConsoleColor.Blue;
             viewSymbol = "^";
             barrier = false;
-            OnTapAction += Activate;
+            OnTapAction += OnTap;
             this.position = position;
         }
 
         //TODO: убрать костыль, заменить player на IDestroyable
-        public override void Activate()
+        public override void OnTap()
         {
             if (isActivate)
             {
                 Variables.player.healtPoint -= 10;
                 isActivate = false;
                 symbolColor = ConsoleColor.White;
+
+                EventLog.doEvent("Игрок: наступил на ловушку", ConsoleColor.DarkRed);
             }
         }
     }

@@ -49,6 +49,7 @@ namespace ConsoleApp1
 
             exitDoor = new ExitDoor(GenerateExitDoor());
             cells[exitDoor.position.y, exitDoor.position.x] = exitDoor;
+
             if (player.numberCurrentRoom != 0)
             {
                 startDoor = new StartDoor(GenerateStartDoor());

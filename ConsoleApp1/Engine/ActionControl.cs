@@ -20,32 +20,22 @@ namespace ConsoleApp1
             switch (move)
             {
                 case direction.up:
-                        nextPosition.y--;
-
-                    //EventLog.doEvent("Игрок движение вверх", ConsoleColor.DarkGreen);
+                   nextPosition.y--;             
                     break;
                 case direction.down:
-                        nextPosition.y++;
-
-                    //EventLog.doEvent("Игрок движение вниз", ConsoleColor.DarkGreen);
+                    nextPosition.y++;
                     break;
                 case direction.right:
                         nextPosition.x++;
-
-                    //EventLog.doEvent("Игрок движение вправо", ConsoleColor.DarkGreen);
                     break;
                 case direction.left:
                         nextPosition.x--;
-
-                    //EventLog.doEvent("Игрок движение влево", ConsoleColor.DarkGreen);
                     break;
             }
 
             if (!DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].barrier)
             {
                 player.position = new Point(nextPosition);
-
-                //EventLog.doEvent("Игрок движение вверх", ConsoleColor.DarkGreen);
             }
 
             DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].OnTapAction.Invoke();

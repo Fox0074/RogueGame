@@ -56,13 +56,13 @@ namespace ConsoleApp1
 
             DrawUI();
 
-            //List<LogObject> logArea = EventLog.GetLastLog();
-            //Console.SetCursorPosition(0, areaHeight + 1);
-            //foreach (LogObject message in logArea)
-            //{
-            //    Console.ForegroundColor = message.textColor;
-            //    Console.WriteLine(message.text);
-            //}
+            List<LogObject> logArea = EventLog.GetLastLog();
+            Console.SetCursorPosition(0, areaHeight + 1);
+            foreach (LogObject message in logArea)
+            {
+                Console.ForegroundColor = message.textColor;
+                Console.WriteLine(message.text);
+            }
         }
 
         /// <summary>

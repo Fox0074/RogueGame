@@ -42,6 +42,8 @@ namespace ConsoleApp1
             DungeonRoom.currentDungeonRoom.AddToFill(player);
 
             player.position = DungeonRoom.currentDungeonRoom.startDoor.CheckDoor(DungeonRoom.currentDungeonRoom.currentCells);
+
+            EventLog.doEvent("Игрок: перешел в " + (player.numberCurrentRoom + 1) + " комнату", ConsoleColor.DarkGreen);
         }
     }
 }

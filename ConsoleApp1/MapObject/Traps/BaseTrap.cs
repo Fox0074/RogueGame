@@ -10,6 +10,6 @@ namespace ConsoleApp1
     {
         public Point position { get; set; } = new Point();
 
-        public abstract void Activate();
+        public abstract void OnTap();
     }
 }

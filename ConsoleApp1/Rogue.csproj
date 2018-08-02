@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Engine\ActionControl.cs" />
     <Compile Include="Engine\Graphics\UserInterface.cs" />
+    <Compile Include="Engine\Log\EventLog.cs" />
+    <Compile Include="Engine\Log\LogObject.cs" />
     <Compile Include="Factory\LevelDifficults\NormalDifficult.cs" />
     <Compile Include="Factory\LevelGenerator.cs" />
     <Compile Include="Framework\Variables.cs" />
@@ -60,7 +62,7 @@
     <Compile Include="Framework\Point.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="MapObject\Traps\BaseTrap.cs" />
-    <Compile Include="MapObject\Traps\Trap.cs" />
+    <Compile Include="MapObject\Trap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Factory\DungeonRoom.cs" />
     <Compile Include="Engine\Graphics\ViewOnConsole.cs" />
@@ -68,8 +70,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Engine\Log\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
