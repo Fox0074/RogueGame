@@ -15,66 +15,43 @@ namespace ConsoleApp1
         /// <param name="move">Направление движения</param>
         static public void MoveCommand(direction move)
         {
-            Point nextPosition = new Point();
+            Point nextPosition = new Point(player.position);
 
             switch (move)
             {
                 case direction.up:
-                    if (!DungeonRoom.currentCells
-                        [player.position.y - 1, player.position.x].barrier)
-                    {
-                        player.position.y--;
+                        nextPosition.y--;
 
-                        //EventLog.doEvent("Игрок движение вверх", ConsoleColor.DarkGreen);
-
-                        DungeonRoom.currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
-                    }
-                    else
-                        DungeonRoom.currentCells[player.position.y - 1, player.position.x].OnTapAction.Invoke();
+                    //EventLog.doEvent("Игрок движение вверх", ConsoleColor.DarkGreen);
                     break;
-
                 case direction.down:
-                    if (!DungeonRoom.currentCells
-                        [player.position.y + 1, player.position.x].barrier)
-                    {
-                        player.position.y++;
+                        nextPosition.y++;
 
-                        //EventLog.doEvent("Игрок движение вниз", ConsoleColor.DarkGreen);
-
-                        DungeonRoom.currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
-                    }
-                    else
-                        DungeonRoom.currentCells[player.position.y + 1, player.position.x].OnTapAction.Invoke();
+                    //EventLog.doEvent("Игрок движение вниз", ConsoleColor.DarkGreen);
                     break;
-
                 case direction.right:
-                    if (!DungeonRoom.currentCells
-                        [player.position.y, player.position.x + 1].barrier)
-                    {
-                        player.position.x++;
+                        nextPosition.x++;
 
-                        //EventLog.doEvent("Игрок движение вправо", ConsoleColor.DarkGreen);
-
-                        DungeonRoom.currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
-                    }
-                    else
-                        DungeonRoom.currentCells[player.position.y, player.position.x + 1].OnTapAction.Invoke();
+                    //EventLog.doEvent("Игрок движение вправо", ConsoleColor.DarkGreen);
                     break;
-
                 case direction.left:
-                    if (!DungeonRoom.currentCells
-                        [player.position.y, player.position.x - 1].barrier)
-                    {
-                        player.position.x--;
+                        nextPosition.x--;
 
-                        //EventLog.doEvent("Игрок движение влево", ConsoleColor.DarkGreen);
-
-                        DungeonRoom.currentCells[player.position.y, player.position.x].OnTapAction.Invoke();
-                    }
-                    else
-                        DungeonRoom.currentCells[player.position.y, player.position.x - 1].OnTapAction.Invoke();
+                    //EventLog.doEvent("Игрок движение влево", ConsoleColor.DarkGreen);
                     break;
             }
+
+            if (!DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].barrier)
+            {
+                player.position = new Point(nextPosition);
+
+                //EventLog.doEvent("Игрок движение вверх", ConsoleColor.DarkGreen);
+            }
+            else
+            {
+                DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].OnTapAction.Invoke();
+            }
+
         }
 
     }

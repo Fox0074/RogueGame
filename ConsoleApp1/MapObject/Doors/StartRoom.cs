@@ -27,7 +27,11 @@ namespace ConsoleApp1
         {           
             player.numberCurrentRoom--;
 
-            player.position = rooms[player.numberCurrentRoom].exitDoor.CheckDoor(DungeonRoom.currentCells);
+            DungeonRoom.currentDungeonRoom.RemoveFillObject(player);
+            DungeonRoom.currentDungeonRoom = rooms[player.numberCurrentRoom];
+            DungeonRoom.currentDungeonRoom.AddToFill(player);
+
+            player.position = DungeonRoom.currentDungeonRoom.exitDoor.CheckDoor(DungeonRoom.currentDungeonRoom.currentCells);
         }
     }
 }

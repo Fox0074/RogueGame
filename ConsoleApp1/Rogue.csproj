@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine\ActionControl.cs" />
-    <Compile Include="Engine\Graphics\FillMap.cs" />
     <Compile Include="Engine\Graphics\UserInterface.cs" />
     <Compile Include="Framework\Variables.cs" />
     <Compile Include="MapObject\Doors\BaseDoor.cs" />

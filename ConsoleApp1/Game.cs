@@ -9,7 +9,6 @@ namespace ConsoleApp1
     class Game
     {
         static public Action Step = delegate { };
-        static public FillMap filling = new FillMap();
 
         static public void Initialization()
         {
@@ -21,14 +20,14 @@ namespace ConsoleApp1
                 randomSizeRoom.Next(6, 21)
                 ));
 
-            DungeonRoom.currentCells = rooms[0].GetCells();
+            DungeonRoom.currentDungeonRoom = rooms[0];
 
-            filling.AddObject(player);
+            DungeonRoom.currentDungeonRoom.AddToFill(player);
 
-            player.numberCurrentRoom = 0;       
+            player.numberCurrentRoom = rooms.IndexOf(DungeonRoom.currentDungeonRoom);       
             player.position = new Point(
-                (DungeonRoom.currentCells.GetLength(0) - 1)/2,
-                (DungeonRoom.currentCells.GetLength(1) - 1)/2);
+                (DungeonRoom.currentDungeonRoom.currentCells.GetLength(0) - 1)/2,
+                (DungeonRoom.currentDungeonRoom.currentCells.GetLength(1) - 1)/2);
 
 
             Console.CursorVisible = false;            
@@ -42,8 +41,8 @@ namespace ConsoleApp1
             while (true)
             {
                 ClearMap();
-                filling.Fill();
-                ViewOnConsole.ViewGame();               
+                FillMap();
+                ViewOnConsole.ViewGame();
                 KeybordCommand.DistributeCommand(Console.ReadKey().Key);
                 //GameReaction();
                 Step.Invoke();
@@ -52,7 +51,12 @@ namespace ConsoleApp1
 
         private static void ClearMap()
         {
-            rooms[player.numberCurrentRoom].CopyCells();
+            DungeonRoom.currentDungeonRoom.CopyCells();
+        }
+
+        private static void FillMap()
+        {
+            DungeonRoom.currentDungeonRoom.FillMap();
         }
     }
 }

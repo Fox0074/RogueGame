@@ -44,12 +44,12 @@ namespace ConsoleApp1
 
             Console.SetCursorPosition(0, 0);
 
-            for (int i = 0; i < DungeonRoom.currentCells.GetLength(0); i++)
+            for (int i = 0; i < DungeonRoom.currentDungeonRoom.currentCells.GetLength(0); i++)
             {
-                for (int j = 0; j < DungeonRoom.currentCells.GetLength(1); j++)
+                for (int j = 0; j < DungeonRoom.currentDungeonRoom.currentCells.GetLength(1); j++)
                 {                  
-                    Console.ForegroundColor = DungeonRoom.currentCells[i, j].symbolColor;
-                    Console.Write(DungeonRoom.currentCells[i,j].viewSymbol + " ");
+                    Console.ForegroundColor = DungeonRoom.currentDungeonRoom.currentCells[i, j].symbolColor;
+                    Console.Write(DungeonRoom.currentDungeonRoom.currentCells[i,j].viewSymbol + " ");
                 }
                 Console.WriteLine();
             }
@@ -76,7 +76,7 @@ namespace ConsoleApp1
 
             Console.SetCursorPosition(areaWidth + 1, 2);
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("Текущая комната: " + UserInterface.player.numberCurrentRoom + 
+            Console.WriteLine("Текущая комната: " + (UserInterface.player.numberCurrentRoom+1) + 
                 " из " + Variables.rooms.Count());
         }
     }

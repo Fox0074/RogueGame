@@ -8,15 +8,17 @@ using static ConsoleApp1.Variables;
 namespace ConsoleApp1
 {
     class DungeonRoom
-    {
-        private IMapObject[,] cells { get ; set; }
-        public static IMapObject[,] currentCells;
+    {        
+        public static DungeonRoom currentDungeonRoom;
 
+        public IMapObject[,] currentCells;
+        public ExitDoor exitDoor { get; set; }
+        public StartDoor startDoor { get; set; }
+
+        private List<IMapObject> objectsOnMap = new List<IMapObject>();
+        private IMapObject[,] cells { get; set; }
         private Random random = new Random();
-
-        public ExitDoor exitDoor { get; set; } 
-        public StartDoor  startDoor { get; set; } 
-
+      
         public DungeonRoom(int height, int width)
         {
             
@@ -52,7 +54,8 @@ namespace ConsoleApp1
                 startDoor = new StartDoor(GenerateStartDoor());
                 cells[startDoor.position.y, startDoor.position.x] = startDoor;
             }
-                      
+
+            CopyCells();
         }
 
         /// <summary>
@@ -173,9 +176,27 @@ namespace ConsoleApp1
             }
         }
 
-        public IMapObject[,] GetCells()
+        public void AddToFill(IMapObject mapObject)
         {
-            return cells;
+            objectsOnMap.Add(mapObject);
+        }
+
+        public void RemoveFillObject(IMapObject mapObject)
+        {
+            objectsOnMap.Remove(mapObject);
+        }
+
+        public void FillMap()
+        {
+            foreach (IMapObject mapObject in objectsOnMap)
+            {
+                currentCells[mapObject.position.y, mapObject.position.x] = mapObject;
+            }
+        }
+
+        public void ClearFill()
+        {
+            objectsOnMap.Clear();
         }
 
     }
