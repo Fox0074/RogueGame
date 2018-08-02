@@ -22,6 +22,8 @@ namespace ConsoleApp1
 
             DungeonRoom.currentDungeonRoom = rooms[0];
 
+            DungeonRoom.currentDungeonRoom.AddToFill(new Trap(new Point(2,4)));
+
             DungeonRoom.currentDungeonRoom.AddToFill(player);
 
             player.numberCurrentRoom = rooms.IndexOf(DungeonRoom.currentDungeonRoom);       

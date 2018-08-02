@@ -47,10 +47,9 @@ namespace ConsoleApp1
 
                 //EventLog.doEvent("Игрок движение вверх", ConsoleColor.DarkGreen);
             }
-            else
-            {
-                DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].OnTapAction.Invoke();
-            }
+
+            DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].OnTapAction.Invoke();
+
 
         }
 
