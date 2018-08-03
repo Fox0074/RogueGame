@@ -37,8 +37,14 @@ namespace ConsoleApp1
             {
                 player.position = new Point(nextPosition);
             }
-
-            DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].OnTapAction.Invoke();
+            try
+            {
+                DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].OnTapAction.Invoke();
+            }
+            catch (Exception ex)
+            {
+                //Debug.log(ex.message());
+            }
 
 
         }

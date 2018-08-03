@@ -60,8 +60,8 @@ namespace ConsoleApp1
             Console.SetCursorPosition(0, areaHeight + 1);
             foreach (LogObject message in logArea)
             {
-                Console.ForegroundColor = message.textColor;
-                Console.WriteLine(message.text);
+                Console.ForegroundColor = message.color;
+                Console.WriteLine(message.message);
             }
         }
 

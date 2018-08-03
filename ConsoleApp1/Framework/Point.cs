@@ -27,6 +27,17 @@ namespace ConsoleApp1
             this.x = x;
             this.y = y;
         }
+
+        public static Point operator +(Point p1, Point p2)
+        {
+            return new Point(p1.y + p2.y,p1.x+p2.x);
+        }
+
+        public static Point operator -(Point p1, Point p2)
+        {
+            return new Point(p1.y - p2.y, p1.x - p2.x);
+        }
+
     }
 
 }
