@@ -16,15 +16,19 @@ namespace ConsoleApp1
         public Action OnTapAction { get; set; }
         public bool barrier { get; set; }
         public ConsoleColor symbolColor { get; set; }
-        public int armor { get; set; } = 0;
-        public float dodgeChance { get; set; } = 0.1f;
+        public int armor { get; set; }
+        public float dodgeChance { get; set; }
+        public BaseWeapon weapon { get; set; }
+
 
         private Random random = new Random();
 
         public Player()
         {
             healtPoint = 100;
-
+            armor = 0;
+            dodgeChance = 0.1f;
+            weapon = new BaseWeapon();
             viewSymbol = "P";
             symbolColor = ConsoleColor.Blue;
             barrier = true;
@@ -37,8 +41,7 @@ namespace ConsoleApp1
         }
 
         public void SetDamage(int damage)
-        {
-            
+        {       
             if (random.Next(0, 101) > dodgeChance * 100)
             {
                 if (damage - armor > 0)
@@ -46,11 +49,11 @@ namespace ConsoleApp1
                     healtPoint -= damage - armor;
                     EventLog.doEvent("Игрок получил " + damage + " урона", ConsoleColor.DarkRed);
                 }
+                else
+                    EventLog.doEvent("Атака по игроку не пробила броню", ConsoleColor.DarkGreen);
             }
             else
-            {
-                EventLog.doEvent("Уворот, игрок избежал урона", ConsoleColor.Green);
-            }
+                EventLog.doEvent("Уворот, игрок избежал урона", ConsoleColor.DarkGreen);
         }
     }
 }

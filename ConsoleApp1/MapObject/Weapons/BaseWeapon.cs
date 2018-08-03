@@ -22,21 +22,21 @@ namespace ConsoleApp1
             weaponName = "Кулаки";
             damage = 3;
             attackDistance = 1;
-            hitChance = 0.8f;
+            hitChance = 0.9f;
             criticalChance = 0.1f;
             criticalModifly = 1.5f;
         }
 
         public virtual int GetDamage()
         {
-            int result = 0;
+            int weaponDamage = 0;
 
             if (random.Next(0,101) <= hitChance*100)
             {
-                result = (random.Next(0, 101) <= criticalChance * 100) ? damage : (int)(damage * criticalModifly);
+                weaponDamage = (random.Next(0, 101) <= criticalChance * 100) ? damage : (int)(damage * criticalModifly);
             }
 
-            return result;
+            return weaponDamage;
         }
     }
 }
