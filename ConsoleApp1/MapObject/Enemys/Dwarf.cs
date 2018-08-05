@@ -16,5 +16,6 @@ namespace ConsoleApp1
             symbolColor = ConsoleColor.Magenta;
             dodgeChance = 0.1f;
         }
+        
     }
 }

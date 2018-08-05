@@ -32,7 +32,6 @@ namespace ConsoleApp1
 
             barrier = true;
 
-            Game.Step += CheckPlayer;
             OnTapAction += onTap;
         }
 
@@ -53,7 +52,7 @@ namespace ConsoleApp1
                 EventLog.doEvent(("Уворот, " + name + " избежал урона"), ConsoleColor.DarkRed);
         }
 
-        protected virtual void CheckPlayer()
+        public virtual void CheckPlayer()
         {
             if (Math.Abs((position - player.position).x) <= weapon.attackDistance && Math.Abs((position - player.position).y) <= weapon.attackDistance)
             {
@@ -74,12 +73,22 @@ namespace ConsoleApp1
             int damage = player.weapon.GetDamage();
             if (damage > 0)
             {
-                SetDamage(damage);
+                SetDamage(damage);               
             }
             else
             {
                 EventLog.doEvent("Игрок" + " промахнулся по " + name, ConsoleColor.DarkRed);
             }
+
+            if (healtPoint <=0)
+            {
+                Game.Step -= CheckPlayer;
+                OnTapAction -= onTap;
+                DungeonRoom.currentDungeonRoom.RemoveFillObject(this);
+                //TODO: переделать
+                DungeonRoom.currentDungeonRoom.roomNextSteep -= CheckPlayer;
+            }
         }
+        
     }
 }

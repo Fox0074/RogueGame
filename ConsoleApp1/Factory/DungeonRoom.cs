@@ -14,10 +14,12 @@ namespace ConsoleApp1
         public IMapObject[,] currentCells;
         public ExitDoor exitDoor { get; set; }
         public StartDoor startDoor { get; set; }
+        public Action roomNextSteep = delegate { };
 
         private List<IMapObject> objectsOnMap = new List<IMapObject>();
         private IMapObject[,] cells { get; set; }
         private Random random = new Random();
+        private LevelGenerator levelGenerator = new LevelGenerator();
       
         public DungeonRoom(int height, int width)
         {
@@ -55,8 +57,9 @@ namespace ConsoleApp1
                 startDoor = new StartDoor(GenerateStartDoor());
                 cells[startDoor.position.y, startDoor.position.x] = startDoor;
             }
-
+            
             CopyCells();
+            levelGenerator.CreateFillRoom(this);
         }
 
         /// <summary>
@@ -191,7 +194,14 @@ namespace ConsoleApp1
         {
             foreach (IMapObject mapObject in objectsOnMap)
             {
-                currentCells[mapObject.position.y, mapObject.position.x] = mapObject;
+                if (mapObject != null)
+                {
+                    currentCells[mapObject.position.y, mapObject.position.x] = mapObject;
+                }
+                else
+                {
+                    RemoveFillObject(mapObject);
+                }
             }
         }
 

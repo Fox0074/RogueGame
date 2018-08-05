@@ -23,7 +23,7 @@ namespace ConsoleApp1
             DungeonRoom.currentDungeonRoom = rooms[0];
 
             DungeonRoom.currentDungeonRoom.AddToFill(new Trap(new Point(2,4)));
-            DungeonRoom.currentDungeonRoom.AddToFill(new Dwarf(new Point(3, 6), 100, 0, new BaseWeapon()));
+            //DungeonRoom.currentDungeonRoom.AddToFill(new Dwarf(new Point(3, 6), 100, 0, new BaseWeapon()));
 
             DungeonRoom.currentDungeonRoom.AddToFill(player);
 
@@ -49,6 +49,10 @@ namespace ConsoleApp1
                 KeybordCommand.DistributeCommand(Console.ReadKey().Key);
                 //GameReaction();
                 Step.Invoke();
+
+                //TODO: переделать
+                DungeonRoom.currentDungeonRoom.roomNextSteep.Invoke();
+
             }
         }
 
