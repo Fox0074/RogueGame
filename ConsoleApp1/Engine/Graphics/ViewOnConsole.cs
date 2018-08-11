@@ -79,5 +79,11 @@ namespace ConsoleApp1
             Console.WriteLine("Текущая комната: " + (UserInterface.player.numberCurrentRoom+1) + 
                 " из " + Variables.rooms.Count());
         }
+
+        static public void ViewInventory()
+        {
+            Console.Clear();
+            Console.WriteLine("Kek");
+        }
     }
 }

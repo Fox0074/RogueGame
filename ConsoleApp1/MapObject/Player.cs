@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Player: IMapObject, IDestroy
+    class Player : IMapObject, IDestroy
     {
         public int healtPoint { get; set; }
         public Point position { get; set; } = new Point();
@@ -33,27 +33,43 @@ namespace ConsoleApp1
             symbolColor = ConsoleColor.Blue;
             barrier = true;
             OnTapAction += OnTap;
+
+            UserInterface.player = this;
         }
 
         public void OnTap()
         {
-            
+
         }
 
         public void SetDamage(int damage)
-        {       
+        {
             if (random.Next(0, 101) > dodgeChance * 100)
             {
                 if (damage - armor > 0)
                 {
                     healtPoint -= damage - armor;
                     EventLog.doEvent("Игрок получил " + damage + " урона", ConsoleColor.DarkRed);
+
+                    ObjectDeath();
                 }
                 else
                     EventLog.doEvent("Атака по игроку не пробила броню", ConsoleColor.DarkGreen);
             }
             else
                 EventLog.doEvent("Уворот, игрок избежал урона", ConsoleColor.DarkGreen);
+        }
+
+        public void ObjectDeath()
+        {
+            if (healtPoint <= 0)
+            {
+                DungeonRoom.currentDungeonRoom.RemoveFillObject(this);
+
+                EventLog.doEvent("Ты сдох", ConsoleColor.DarkRed);
+
+                Game.Initialization();
+            }
         }
     }
 }

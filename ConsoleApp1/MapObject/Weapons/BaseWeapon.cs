@@ -15,16 +15,16 @@ namespace ConsoleApp1
         public float criticalChance { get; set; }
         public float criticalModifly { get; set; }
 
-        private Random random = new Random();
+        protected Random random = new Random();
 
         public BaseWeapon()
         {
             weaponName = "Кулаки";
             damage = 3;
             attackDistance = 1;
-            hitChance = 0.9f;
-            criticalChance = 0.1f;
-            criticalModifly = 1.5f;
+            hitChance = 0.8f;
+            criticalChance = 0f;
+            criticalModifly = 1f;
         }
 
         public virtual int GetDamage()

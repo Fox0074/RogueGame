@@ -26,6 +26,7 @@ namespace ConsoleApp1
                     break;
 
                 case ConsoleKey.I:
+                    ActionControl.ShowInventory();
                     break;
 
             }

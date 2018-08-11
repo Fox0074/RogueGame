@@ -29,7 +29,9 @@ namespace ConsoleApp1
                                         );
                 }
 
-                var enemy = new Dwarf(checkingPosition, 90, 0, new BaseWeapon());
+                
+                //var enemy = new Dwarf(checkingPosition, 90, 0, new BaseWeapon());
+                var enemy = new Dwarf(checkingPosition);
                 room.roomNextSteep += enemy.CheckPlayer;
                 room.AddToFill(enemy);
 

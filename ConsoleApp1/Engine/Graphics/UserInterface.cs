@@ -13,8 +13,7 @@ namespace ConsoleApp1
 
         static UserInterface()
         {
-            player = Variables.player;
-            //roomsCount = Variables.rooms.Count();
+
         }
     }
 }

@@ -49,5 +49,10 @@ namespace ConsoleApp1
 
         }
 
+        static public void ShowInventory()
+        {
+
+        }
+
     }
 }

@@ -12,6 +12,8 @@ namespace ConsoleApp1
 
         static public void Initialization()
         {
+            Variables.rooms.Clear();
+
              var randomSizeRoom = new Random();
 
             player = new Player();
@@ -23,7 +25,6 @@ namespace ConsoleApp1
             DungeonRoom.currentDungeonRoom = rooms[0];
 
             DungeonRoom.currentDungeonRoom.AddToFill(new Trap(new Point(2,4)));
-            //DungeonRoom.currentDungeonRoom.AddToFill(new Dwarf(new Point(3, 6), 100, 0, new BaseWeapon()));
 
             DungeonRoom.currentDungeonRoom.AddToFill(player);
 

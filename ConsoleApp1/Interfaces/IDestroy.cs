@@ -13,5 +13,7 @@ namespace ConsoleApp1
         float dodgeChance { get; set; }
 
         void SetDamage(int damage);
+
+        void ObjectDeath ();
     }
 }

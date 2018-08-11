@@ -10,25 +10,21 @@ namespace ConsoleApp1
     abstract class BaseEnemy : IMapObject, IDestroy
     {
         public string name { get; set; }
-        public int healtPoint { get; set; }
+        public int healtPoint { get; set; } = 1;
         public BaseWeapon weapon { get; set; }
         public string viewSymbol { get; set; }
         public bool barrier { get; set; }
         public Action OnTapAction { get; set; }
         public ConsoleColor symbolColor { get; set; }
         public Point position { get; set; }
-        public int armor { get; set; }
-        public float dodgeChance { get; set; }
+        public int armor { get; set; } = 0;
+        public float dodgeChance { get; set; } = 0;
 
-        private Random random = new Random();
+        protected Random random = new Random();
 
-        public BaseEnemy(Point position, int healtPoint,
-                    int armor, BaseWeapon weapon)
+        public BaseEnemy(Point position)
         { 
             this.position = position;
-            this.healtPoint = healtPoint;
-            this.armor = armor;
-            this.weapon = weapon;
 
             barrier = true;
 
@@ -73,22 +69,26 @@ namespace ConsoleApp1
             int damage = player.weapon.GetDamage();
             if (damage > 0)
             {
-                SetDamage(damage);               
+                SetDamage(damage);
+                ObjectDeath();
             }
             else
             {
                 EventLog.doEvent("Игрок" + " промахнулся по " + name, ConsoleColor.DarkRed);
             }
+        }
 
-            if (healtPoint <=0)
+        public void ObjectDeath()
+        {
+            if (healtPoint <= 0)
             {
-                Game.Step -= CheckPlayer;
                 OnTapAction -= onTap;
                 DungeonRoom.currentDungeonRoom.RemoveFillObject(this);
                 //TODO: переделать
                 DungeonRoom.currentDungeonRoom.roomNextSteep -= CheckPlayer;
+
+                EventLog.doEvent("Враг сдох", ConsoleColor.DarkYellow);
             }
         }
-        
     }
 }

@@ -8,10 +8,13 @@ namespace ConsoleApp1
 {
     class Dwarf : BaseEnemy
     {
-        public Dwarf(Point position, int healtPoint, int armor, BaseWeapon weapon) 
-                    : base(position, healtPoint, armor, weapon)
+        public Dwarf(Point position)
+                    : base(position)
         {
             name = "Гном";
+            healtPoint = random.Next(20, 31);
+            armor = random.Next(0, 2);
+            weapon = new Hammer(1, 1);
             viewSymbol = "D";
             symbolColor = ConsoleColor.Magenta;
             dodgeChance = 0.1f;
