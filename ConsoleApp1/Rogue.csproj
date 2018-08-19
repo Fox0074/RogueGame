@@ -73,6 +73,7 @@
     <Compile Include="Engine\KeybordCommand.cs" />
     <Compile Include="MapObject\Doors\ExitDoor.cs" />
     <Compile Include="MapObject\Enemys\Dwarf.cs" />
+    <Compile Include="MapObject\Enemys\Skeleton.cs" />
     <Compile Include="MapObject\Player.cs" />
     <Compile Include="MapObject\RoomWall.cs" />
     <Compile Include="MapObject\Doors\StartRoom.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="MapObject\Traps\Trap.cs" />
     <Compile Include="MapObject\Weapons\BaseWeapon.cs" />
     <Compile Include="MapObject\Weapons\Hammer.cs" />
+    <Compile Include="MapObject\Weapons\Sword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Factory\DungeonRoom.cs" />
     <Compile Include="Engine\Graphics\ViewOnConsole.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static ConsoleApp1.Variables;
@@ -10,9 +11,11 @@ namespace ConsoleApp1
     {
         static public Action Step = delegate { };
 
+        private static Random random = new Random();
+
         static public void Initialization()
         {
-            Variables.rooms.Clear();
+            rooms.Clear();
 
              var randomSizeRoom = new Random();
 
@@ -47,7 +50,9 @@ namespace ConsoleApp1
                 ClearMap();
                 FillMap();
                 ViewOnConsole.ViewGame();
+
                 KeybordCommand.DistributeCommand(Console.ReadKey().Key);
+
                 //GameReaction();
                 Step.Invoke();
 
