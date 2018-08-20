@@ -33,13 +33,19 @@ namespace RogueLikeGame
                     break;
             }
 
+            if ((DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x] as IDestroy) != null)
+            {
+                player.DoAttack((DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x] as IDestroy));
+            }
+
             if (!DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].barrier)
             {
                 player.position = new Point(nextPosition);
             }
+
             try
             {
-                DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].OnTapAction.Invoke();
+                DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].OnTapAction.Invoke(player);
             }
             catch (Exception ex)
             {

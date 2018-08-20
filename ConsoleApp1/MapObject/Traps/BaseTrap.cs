@@ -10,6 +10,6 @@ namespace RogueLikeGame
     {
         public Point position { get; set; } = new Point();
 
-        public abstract void OnTap();
+        public abstract void OnTap(IMapObject mapObject);
     }
 }

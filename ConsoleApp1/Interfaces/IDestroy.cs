@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RogueLikeGame
 {
-    interface IDestroy
+    public interface IDestroy
     {
         int currentHealtPoint { get; set; }
         int armor { get; set; }

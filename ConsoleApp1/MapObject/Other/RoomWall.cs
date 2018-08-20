@@ -10,7 +10,7 @@ namespace RogueLikeGame
     {
         public string viewSymbol { get; set; }
         public bool barrier { get; set; }
-        public Action OnTapAction { get; set; }
+        public Action<IMapObject> OnTapAction { get; set; }
         public ConsoleColor symbolColor { get; set; }
         public Point position { get; set; }
 
@@ -22,7 +22,7 @@ namespace RogueLikeGame
             OnTapAction += OnTap;
         }
 
-        public void OnTap()
+        public void OnTap(IMapObject obj)
         {
             this.position = position;
         }

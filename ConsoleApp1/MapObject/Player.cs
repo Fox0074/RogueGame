@@ -7,23 +7,23 @@ using static RogueLikeGame.Variables;
 
 namespace RogueLikeGame
 {
+
+    //TODO: переделать IStats в класс????
     class Player : IMapObject, IDestroy, IStats
-    {
-        public int currentHealtPoint { get; set; }
+    {      
         public Point position { get; set; } = new Point();
         public int numberCurrentRoom { get; set; }
-
         public string viewSymbol { get; set; }
-        public Action OnTapAction { get; set; }
+        public Action<IMapObject> OnTapAction { get; set; }
         public bool barrier { get; set; }
         public ConsoleColor symbolColor { get; set; }
+
         public int armor { get; set; }
         public float dodgeChance { get; set; }
         public BaseWeapon weapon { get; set; }
        
         public int strength { get; set; }
         public int agility { get; set; }
-
         private int _stamina;
         public int stamina
         {
@@ -36,13 +36,17 @@ namespace RogueLikeGame
             {
                 currentHealtPoint += (value - _stamina) * 10;
                 _stamina = value;
-                setMaxHealtPoint();
+                SetMaxHealtPoint();
             }
         }
 
+        public int currentHealtPoint { get; set; }
         public int maxHealthPoint { get; set; }
-
         private const int defaultHealthPoint = 100;
+
+        public int level { get; set; }
+        public int currentExperience { get; set; }
+        public int maxExperience { get; set; }
 
         public Player()
         {
@@ -63,11 +67,6 @@ namespace RogueLikeGame
             UserInterface.player = this;
         }
 
-        public void OnTap()
-        {
-
-        }
-
         public void SetDamage(int damage)
         {
             if (random.Next(0, 101) > dodgeChance * 100)
@@ -86,6 +85,22 @@ namespace RogueLikeGame
                 EventLog.doEvent("Уворот, игрок избежал урона", ConsoleColor.DarkGreen);
         }
 
+        private int GetDamage()
+        {
+            //TODO: Продумать зависимость урона, крита, попадания от характеристик
+            if (random.Next(0, 101) <= (weapon.hitChance + agility) * 100)
+            {
+                var damageInflicted = weapon.damage + strength;
+
+                damageInflicted = (random.Next(0, 101) <= (weapon.criticalChance + agility) * 100) ? damageInflicted : (int)(damageInflicted * (weapon.criticalModifly + agility / 10));
+
+                return damageInflicted;
+            }
+
+            return 0;
+
+        }
+
         public void ObjectDeath()
         {
             if (currentHealtPoint <= 0)
@@ -98,10 +113,20 @@ namespace RogueLikeGame
             }
         }
 
-        private void setMaxHealtPoint()
+        public void DoAttack(IDestroy mapObject)
+        {
+            int damage = GetDamage();
+            mapObject.SetDamage(damage);
+        }
+
+        private void SetMaxHealtPoint()
         {
             maxHealthPoint = defaultHealthPoint + stamina * 10;
         }
 
+        public void OnTap(IMapObject obj)
+        {
+
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace RogueLikeGame
         string viewSymbol { get; set; }
         ConsoleColor symbolColor { get; set; }
         bool barrier { get; set; }
-        Action OnTapAction { get; set; }
+        Action<IMapObject> OnTapAction { get; set; }
 
     }
 }
