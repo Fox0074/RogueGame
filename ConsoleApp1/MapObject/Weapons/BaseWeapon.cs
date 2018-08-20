@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp1.Variables;
 
 namespace ConsoleApp1
 {
-    class BaseWeapon
+    abstract class BaseWeapon
     {
         public string weaponName { get; set; }
         public int damage { get; set; }
@@ -14,18 +15,6 @@ namespace ConsoleApp1
         public float hitChance { get; set; }
         public float criticalChance { get; set; }
         public float criticalModifly { get; set; }
-
-        protected Random random = new Random();
-
-        public BaseWeapon()
-        {
-            weaponName = "Кулаки";
-            damage = 3;
-            attackDistance = 1;
-            hitChance = 0.8f;
-            criticalChance = 0f;
-            criticalModifly = 1f;
-        }
 
         public virtual int GetDamage()
         {

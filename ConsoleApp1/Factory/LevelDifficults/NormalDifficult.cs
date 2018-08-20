@@ -4,13 +4,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp1.Variables;
 
 namespace ConsoleApp1
 {
     class NormalDifficult : IDifficultsGenerator
-    {
-        private Random random = new Random();       
-        private enum enemy { Elf, Skeleton };
+    {       
+        private List<Type> enemyTypes = new List<Type> {
+            typeof(Dwarf), typeof(Skeleton) };
 
 
         public void CreateObjects(DungeonRoom room)
@@ -32,32 +33,24 @@ namespace ConsoleApp1
                                         );
                 }
 
+                var enemyType = enemyTypes[(random.Next(0, enemyTypes.Count))];
 
-                //var enemy = new Dwarf(checkingPosition, 90, 0, new BaseWeapon());
-                var enemy = new Dwarf(checkingPosition);
+                ConstructorInfo ci = enemyType.GetConstructor(new Type[] { typeof(Point) });
+                object enemy = ci.Invoke(new object[] { checkingPosition });
 
-                room.roomNextSteep += enemy.CheckPlayer;
-                room.AddToFill(enemy);
-
-
-                //Здесь я смог создать обьект класса, но вызвать его методы я пока не смог
-                Type TestType = Type.GetType("ConsoleApp1.Dwarf");
-                ConstructorInfo ci = TestType.GetConstructor(new Type[] { typeof(Point) });
-                object Obj = ci.Invoke(new object[] { new Point(1, 1) });
-                Console.WriteLine("AAAAAAAAAAAAAAAAAAAA" + Obj.GetType());
+                room.roomNextSteep += (enemy as BaseEnemy).CheckPlayer;
+                room.AddToFill(enemy as BaseEnemy);
 
 
-                //TODO: Здесь вроде как создание обьекта динамического класса     
-                //object[] ctorArgs = { 10, 10, 100, 100 };
-                //Assembly assembly = Assembly.LoadWithPartialName("System.Drawing");
-                //Object rect = Activator.CreateInstance(assembly.FullName
-                //    , "System.Drawing.Rectangle"
-                //    , false// ignoreCase, учитывать регистр!
-                //    , 0, null// по умолчанию
-                //    , ctorArgs         // вот они - параметры!
-                //    , null, null, null// всё остальное тоже по умолчанию
-                //    )
-
+                //Создание обьекта динамического класса
+                //var randomClassEnemy = ((enemy)random.Next(0, 2));
+                //Type enemy = (enemy)random.Next(0,2).ToString().;
+                //Type TestType = Type.GetType("ConsoleApp1.Dwarf");
+                //TestType.get
+                //ConstructorInfo ci = TestType.GetConstructor(new Type[] { typeof(Point) });
+                //object Obj = ci.Invoke(new object[] { new Point(1, 1) });
+                //Console.WriteLine("AAAAAAAAAAAAAAAAAAAA" + Obj.GetType());
+                //(Obj as BaseEnemy).CheckPlayer();
             }
         }
     }

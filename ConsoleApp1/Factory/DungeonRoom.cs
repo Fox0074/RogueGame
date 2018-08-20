@@ -19,7 +19,6 @@ namespace ConsoleApp1
         private List<IMapObject> objectsOnMap = new List<IMapObject>();
         private IMapObject[,] cells { get; set; }
         private Random random = new Random();
-        private LevelGenerator levelGenerator = new LevelGenerator();
       
         public DungeonRoom(int height, int width)
         {
@@ -59,7 +58,6 @@ namespace ConsoleApp1
             }
             
             CopyCells();
-            levelGenerator.CreateFillRoom(this);
         }
 
         /// <summary>

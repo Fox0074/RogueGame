@@ -11,7 +11,7 @@ namespace ConsoleApp1
     {
         static public Action Step = delegate { };
 
-        private static Random random = new Random();
+        //private static LevelGenerator levelGenerator = new LevelGenerator();
 
         static public void Initialization()
         {
@@ -20,10 +20,8 @@ namespace ConsoleApp1
              var randomSizeRoom = new Random();
 
             player = new Player();
-            rooms.Add(new DungeonRoom(
-                randomSizeRoom.Next(6, 21),
-                randomSizeRoom.Next(6, 21)
-                ));
+
+            rooms.Add(LevelGenerator.CreateFillRoom());
 
             DungeonRoom.currentDungeonRoom = rooms[0];
 

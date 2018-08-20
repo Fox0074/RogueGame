@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp1.Variables;
 
 namespace ConsoleApp1
 {
-    class Sword : BaseWeapon
+    class Hammer : BaseWeapon
     {
-        public Sword(int playerLevel, int dungeonLevel)
+        public Hammer(int playerLevel, int dungeonLevel)
         {
             //TODO: Придумать формулу генерации демага и свойств оружия
-            weaponName = "Меч";
+            weaponName = "Молот";
             damage = 1 * 1 * random.Next(3, 7);
             attackDistance = 1;
-            hitChance = 0.8f;
-            criticalChance = 0.3f;
-            criticalModifly = 2.0f;
+            hitChance = 0.5f;
+            criticalChance = 0.2f;
+            criticalModifly = 1.5f;
         }
     }
 }

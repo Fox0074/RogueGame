@@ -81,9 +81,12 @@
     <Compile Include="Game.cs" />
     <Compile Include="MapObject\Traps\BaseTrap.cs" />
     <Compile Include="MapObject\Traps\Trap.cs" />
+    <Compile Include="MapObject\Weapons\MeleeWeapon\Axe.cs" />
     <Compile Include="MapObject\Weapons\BaseWeapon.cs" />
-    <Compile Include="MapObject\Weapons\Hammer.cs" />
-    <Compile Include="MapObject\Weapons\Sword.cs" />
+    <Compile Include="MapObject\Weapons\MeleeWeapon\Dagger.cs" />
+    <Compile Include="MapObject\Weapons\MeleeWeapon\Fists.cs" />
+    <Compile Include="MapObject\Weapons\MeleeWeapon\Hammer.cs" />
+    <Compile Include="MapObject\Weapons\MeleeWeapon\Sword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Factory\DungeonRoom.cs" />
     <Compile Include="Engine\Graphics\ViewOnConsole.cs" />
