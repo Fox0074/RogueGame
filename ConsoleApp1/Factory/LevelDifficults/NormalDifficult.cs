@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp1.Variables;
 
 namespace ConsoleApp1
 {
     class NormalDifficult : IDifficultsGenerator
-    {
-        private Random random = new Random();
+    {       
+        private List<Type> enemyTypes = new List<Type> {
+            typeof(Dwarf), typeof(Skeleton) };
+
 
         public void CreateObjects(DungeonRoom room)
         {
@@ -29,12 +33,24 @@ namespace ConsoleApp1
                                         );
                 }
 
-                
-                //var enemy = new Dwarf(checkingPosition, 90, 0, new BaseWeapon());
-                var enemy = new Dwarf(checkingPosition);
-                room.roomNextSteep += enemy.CheckPlayer;
-                room.AddToFill(enemy);
+                var enemyType = enemyTypes[(random.Next(0, enemyTypes.Count))];
 
+                ConstructorInfo ci = enemyType.GetConstructor(new Type[] { typeof(Point) });
+                object enemy = ci.Invoke(new object[] { checkingPosition });
+
+                room.roomNextSteep += (enemy as BaseEnemy).CheckPlayer;
+                room.AddToFill(enemy as BaseEnemy);
+
+
+                //Создание обьекта динамического класса
+                //var randomClassEnemy = ((enemy)random.Next(0, 2));
+                //Type enemy = (enemy)random.Next(0,2).ToString().;
+                //Type TestType = Type.GetType("ConsoleApp1.Dwarf");
+                //TestType.get
+                //ConstructorInfo ci = TestType.GetConstructor(new Type[] { typeof(Point) });
+                //object Obj = ci.Invoke(new object[] { new Point(1, 1) });
+                //Console.WriteLine("AAAAAAAAAAAAAAAAAAAA" + Obj.GetType());
+                //(Obj as BaseEnemy).CheckPlayer();
             }
         }
     }

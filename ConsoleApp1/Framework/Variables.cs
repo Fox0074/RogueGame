@@ -10,5 +10,6 @@ namespace ConsoleApp1
     {
         public static Player player;
         public static List<DungeonRoom> rooms = new List<DungeonRoom>();
+        public static Random random = new Random();
     }
 }

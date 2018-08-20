@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static ConsoleApp1.Variables;
@@ -10,17 +11,17 @@ namespace ConsoleApp1
     {
         static public Action Step = delegate { };
 
+        //private static LevelGenerator levelGenerator = new LevelGenerator();
+
         static public void Initialization()
         {
-            Variables.rooms.Clear();
+            rooms.Clear();
 
              var randomSizeRoom = new Random();
 
             player = new Player();
-            rooms.Add(new DungeonRoom(
-                randomSizeRoom.Next(6, 21),
-                randomSizeRoom.Next(6, 21)
-                ));
+
+            rooms.Add(LevelGenerator.CreateFillRoom());
 
             DungeonRoom.currentDungeonRoom = rooms[0];
 
@@ -46,8 +47,10 @@ namespace ConsoleApp1
             {
                 ClearMap();
                 FillMap();
-                ViewOnConsole.View("game");
+                ViewOnConsole.ViewGame();
+
                 KeybordCommand.DistributeCommand(Console.ReadKey().Key);
+
                 //GameReaction();
                 Step.Invoke();
 

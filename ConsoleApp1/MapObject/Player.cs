@@ -28,7 +28,7 @@ namespace ConsoleApp1
             healtPoint = 100;
             armor = 0;
             dodgeChance = 0.1f;
-            weapon = new BaseWeapon();
+            weapon = new Fists();
             viewSymbol = "P";
             symbolColor = ConsoleColor.Blue;
             barrier = true;
@@ -66,7 +66,7 @@ namespace ConsoleApp1
             {
                 DungeonRoom.currentDungeonRoom.RemoveFillObject(this);
 
-                EventLog.doEvent("Ты сдох", ConsoleColor.DarkRed);
+                EventLog.doEvent("Ебать ты далбоеб, земля тебе пухом братишка", ConsoleColor.DarkRed);
 
                 Game.Initialization();
             }

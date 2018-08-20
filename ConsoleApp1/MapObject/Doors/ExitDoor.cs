@@ -31,10 +31,7 @@ namespace ConsoleApp1
 
             if (player.numberCurrentRoom > rooms.Count - 1)
             {
-
-                rooms.Add(new DungeonRoom(
-                    randomSizeRoom.Next(6, 21),
-                    randomSizeRoom.Next(6, 21)));
+                rooms.Add(LevelGenerator.CreateFillRoom());
             }
 
             DungeonRoom.currentDungeonRoom.RemoveFillObject(player);
