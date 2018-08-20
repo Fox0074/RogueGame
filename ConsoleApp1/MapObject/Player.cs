@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static RogueLikeGame.Variables;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
-    class Player : IMapObject, IDestroy
+    class Player : IMapObject, IDestroy, IStats
     {
-        public int healtPoint { get; set; }
+        public int currentHealtPoint { get; set; }
         public Point position { get; set; } = new Point();
         public int numberCurrentRoom { get; set; }
 
@@ -19,13 +20,38 @@ namespace ConsoleApp1
         public int armor { get; set; }
         public float dodgeChance { get; set; }
         public BaseWeapon weapon { get; set; }
+       
+        public int strength { get; set; }
+        public int agility { get; set; }
 
+        private int _stamina;
+        public int stamina
+        {
+            get
+            {
+                return _stamina;
+            }
 
-        private Random random = new Random();
+            set
+            {
+                currentHealtPoint += (value - _stamina) * 10;
+                _stamina = value;
+                setMaxHealtPoint();
+            }
+        }
+
+        public int maxHealthPoint { get; set; }
+
+        private const int defaultHealthPoint = 100;
 
         public Player()
         {
-            healtPoint = 100;
+            currentHealtPoint = 100;
+
+            strength = 1;
+            agility = 1;
+            stamina = 1;
+
             armor = 0;
             dodgeChance = 0.1f;
             weapon = new Fists();
@@ -48,7 +74,7 @@ namespace ConsoleApp1
             {
                 if (damage - armor > 0)
                 {
-                    healtPoint -= damage - armor;
+                    currentHealtPoint -= damage - armor;
                     EventLog.doEvent("Игрок получил " + damage + " урона", ConsoleColor.DarkRed);
 
                     ObjectDeath();
@@ -62,7 +88,7 @@ namespace ConsoleApp1
 
         public void ObjectDeath()
         {
-            if (healtPoint <= 0)
+            if (currentHealtPoint <= 0)
             {
                 DungeonRoom.currentDungeonRoom.RemoveFillObject(this);
 
@@ -71,5 +97,11 @@ namespace ConsoleApp1
                 Game.Initialization();
             }
         }
+
+        private void setMaxHealtPoint()
+        {
+            maxHealthPoint = defaultHealthPoint + stamina * 10;
+        }
+
     }
 }

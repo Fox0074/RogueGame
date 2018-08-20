@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace RogueLikeGame
 {
-    interface IDifficultsGenerator
+    public interface IStats
     {
-        void CreateObjects(DungeonRoom room);
+        int strength { get; set; }
+        int agility { get; set; }
+        int stamina { get; set; }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Variables;
+using static RogueLikeGame.Variables;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     class ExitDoor : BaseDoor,IMapObject
     {

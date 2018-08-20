@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Variables;
+using static RogueLikeGame.Variables;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     abstract class BaseEnemy : IMapObject, IDestroy
     {
         public string name { get; set; }
-        public int healtPoint { get; set; } = 1;
+        public int currentHealtPoint { get; set; } = 1;
         public BaseWeapon weapon { get; set; }
         public string viewSymbol { get; set; }
         public bool barrier { get; set; }
@@ -37,7 +37,7 @@ namespace ConsoleApp1
             {
                 if (damage - armor > 0)
                 {
-                    healtPoint -= damage - armor;
+                    currentHealtPoint -= damage - armor;
 
                     EventLog.doEvent(name + " получил " + damage + " урона", ConsoleColor.DarkGreen);
                 }
@@ -80,7 +80,7 @@ namespace ConsoleApp1
 
         public void ObjectDeath()
         {
-            if (healtPoint <= 0)
+            if (currentHealtPoint <= 0)
             {
                 OnTapAction -= onTap;
                 DungeonRoom.currentDungeonRoom.RemoveFillObject(this);

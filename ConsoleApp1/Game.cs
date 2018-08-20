@@ -4,8 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Variables;
-namespace ConsoleApp1
+using static RogueLikeGame.Variables;
+namespace RogueLikeGame
 {
     class Game
     {

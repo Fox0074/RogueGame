@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     public class Trap : BaseTrap, IMapObject
     {
@@ -29,7 +29,7 @@ namespace ConsoleApp1
         {
             if (isActivate)
             {
-                Variables.player.healtPoint -= 10;
+                Variables.player.currentHealtPoint -= 10;
                 isActivate = false;
                 symbolColor = ConsoleColor.White;
 

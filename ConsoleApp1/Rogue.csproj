@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9676BB3D-438F-4FBC-8EA7-B593FBA95A86}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleApp1</RootNamespace>
-    <AssemblyName>ConsoleApp1</AssemblyName>
+    <RootNamespace>RogueLikeGame</RootNamespace>
+    <AssemblyName>RogueLikeGame</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -62,12 +62,13 @@
     <Compile Include="Engine\Log\EventLog.cs" />
     <Compile Include="Engine\Log\LogObject.cs" />
     <Compile Include="Factory\LevelDifficults\NormalDifficult.cs" />
-    <Compile Include="Factory\LevelGenerator.cs" />
+    <Compile Include="Factory\Generators\LevelGenerator.cs" />
     <Compile Include="Framework\Variables.cs" />
     <Compile Include="Interfaces\IDestroy.cs" />
     <Compile Include="Interfaces\IDifficultsGenerator.cs" />
+    <Compile Include="Interfaces\IStats.cs" />
     <Compile Include="MapObject\Doors\BaseDoor.cs" />
-    <Compile Include="MapObject\EmptyFloor.cs" />
+    <Compile Include="MapObject\Other\EmptyFloor.cs" />
     <Compile Include="MapObject\Enemys\BaseEnemy.cs" />
     <Compile Include="Interfaces\IMapObject.cs" />
     <Compile Include="Engine\KeybordCommand.cs" />
@@ -75,7 +76,7 @@
     <Compile Include="MapObject\Enemys\Dwarf.cs" />
     <Compile Include="MapObject\Enemys\Skeleton.cs" />
     <Compile Include="MapObject\Player.cs" />
-    <Compile Include="MapObject\RoomWall.cs" />
+    <Compile Include="MapObject\Other\RoomWall.cs" />
     <Compile Include="MapObject\Doors\StartRoom.cs" />
     <Compile Include="Framework\Point.cs" />
     <Compile Include="Game.cs" />
@@ -117,5 +118,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
