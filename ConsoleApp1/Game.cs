@@ -46,7 +46,7 @@ namespace ConsoleApp1
             {
                 ClearMap();
                 FillMap();
-                ViewOnConsole.ViewGame();
+                ViewOnConsole.View("game");
                 KeybordCommand.DistributeCommand(Console.ReadKey().Key);
                 //GameReaction();
                 Step.Invoke();

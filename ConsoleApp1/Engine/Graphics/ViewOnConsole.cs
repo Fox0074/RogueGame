@@ -13,6 +13,19 @@ namespace ConsoleApp1
         static int areaWidth;
         static int areaHeight;
         
+        public static void View(string command)
+        {
+            switch (command)
+            {
+                case "game":
+                    ViewGame();
+                    break;
+                case "inventory":
+                    ViewInventory();
+                    break;               
+            }
+        }
+
         public static void ViewGame()
         {
             areaWidth = (Console.WindowWidth - 2) / 2;
