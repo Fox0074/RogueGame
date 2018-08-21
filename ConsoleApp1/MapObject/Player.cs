@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RogueLikeGame.LevelSystems;
 using static RogueLikeGame.Variables;
 
 namespace RogueLikeGame
-{
+{   
 
-    //TODO: переделать IStats в класс????
     class Player : IMapObject, IDestroy, IStats
     {      
         public Point position { get; set; } = new Point();
@@ -18,35 +18,32 @@ namespace RogueLikeGame
         public bool barrier { get; set; }
         public ConsoleColor symbolColor { get; set; }
 
-        public int armor { get; set; }
-        public float dodgeChance { get; set; }
-        public BaseWeapon weapon { get; set; }
-       
-        public int strength { get; set; }
-        public int agility { get; set; }
-        private int _stamina;
-        public int stamina
-        {
-            get
-            {
-                return _stamina;
-            }
-
-            set
-            {
-                currentHealtPoint += (value - _stamina) * 10;
-                _stamina = value;
-                SetMaxHealtPoint();
-            }
-        }
-
         public int currentHealtPoint { get; set; }
         public int maxHealthPoint { get; set; }
         private const int defaultHealthPoint = 100;
 
-        public int level { get; set; }
-        public int currentExperience { get; set; }
-        public int maxExperience { get; set; }
+        public int armor { get; set; }
+        public float dodgeChance { get; set; }
+        public BaseWeapon weapon { get; set; }
+        public LevelSystem level { get; set; }
+
+        public int strength { get; set; }
+        public int agility { get; set; }
+        private int _mstamina;
+        public int stamina
+        {
+            get
+            {
+                return _mstamina;
+            }
+
+            set
+            {
+                currentHealtPoint += (value - _mstamina) * 10;
+                _mstamina = value;
+                SetMaxHealtPoint();
+            }
+        }
 
         public Player()
         {
@@ -65,6 +62,8 @@ namespace RogueLikeGame
             OnTapAction += OnTap;
 
             UserInterface.player = this;
+            level = new LevelSystem(this);
+
         }
 
         public void SetDamage(int damage)
@@ -123,6 +122,7 @@ namespace RogueLikeGame
         {
             maxHealthPoint = defaultHealthPoint + stamina * 10;
         }
+
 
         public void OnTap(IMapObject obj)
         {

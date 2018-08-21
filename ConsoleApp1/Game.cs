@@ -34,8 +34,7 @@ namespace RogueLikeGame
                 (DungeonRoom.currentDungeonRoom.currentCells.GetLength(0) - 1)/2,
                 (DungeonRoom.currentDungeonRoom.currentCells.GetLength(1) - 1)/2);
 
-
-            Console.CursorVisible = false;            
+            Console.CursorVisible = false;
         }        
 
         static void Main()
@@ -69,5 +68,6 @@ namespace RogueLikeGame
         {
             DungeonRoom.currentDungeonRoom.FillMap();
         }
+        
     }
 }
