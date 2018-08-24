@@ -7,7 +7,7 @@ using static RogueLikeGame.Variables;
 
 namespace RogueLikeGame
 {
-    class ActionControl
+    class ActionControl 
     {
         /// <summary>
         /// Обработка движения игрока (Скорее всего надо переделать на общее передвежение)
@@ -52,12 +52,20 @@ namespace RogueLikeGame
                 //Debug.log(ex.message());
             }
 
-
+            DungeonRoom.currentDungeonRoom.roomNextSteep.Invoke();
         }
 
         static public void ShowInventory()
         {
+            while (true)
+            {
+                ViewOnConsole.View(gameState);
 
+                if (Console.ReadKey().Key == ConsoleKey.I)
+                    break;
+
+
+            }
         }
 
     }

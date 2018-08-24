@@ -12,7 +12,7 @@ namespace RogueLikeGame
         public Hammer(int playerLevel, int dungeonLevel)
         {
             //TODO: Придумать формулу генерации демага и свойств оружия
-            weaponName = "Молот";
+            name = "Молот";
             damage = 1 * 1 * random.Next(3, 7);
             attackDistance = 1;
             hitChance = 0.5f;

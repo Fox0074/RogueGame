@@ -49,6 +49,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Engine\ActionControl.cs" />
     <Compile Include="Engine\Graphics\UserInterface.cs" />
+    <Compile Include="Engine\Inventory\Inventory.cs" />
     <Compile Include="Engine\Log\EventLog.cs" />
     <Compile Include="Engine\Log\LogObject.cs" />
     <Compile Include="Factory\LevelDifficults\NormalDifficult.cs" />
@@ -66,6 +68,8 @@
     <Compile Include="Framework\Variables.cs" />
     <Compile Include="Interfaces\IDestroy.cs" />
     <Compile Include="Interfaces\IDifficultsGenerator.cs" />
+    <Compile Include="Interfaces\IInventoryObject.cs" />
+    <Compile Include="Interfaces\ITrophy.cs" />
     <Compile Include="Interfaces\IStats.cs" />
     <Compile Include="MapObject\Doors\BaseDoor.cs" />
     <Compile Include="MapObject\Other\EmptyFloor.cs" />

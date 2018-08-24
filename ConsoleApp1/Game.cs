@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -7,6 +9,8 @@ using System.Threading.Tasks;
 using static RogueLikeGame.Variables;
 namespace RogueLikeGame
 {
+    public enum GameState { game, inventory };
+
     class Game
     {
         static public Action Step = delegate { };
@@ -37,35 +41,17 @@ namespace RogueLikeGame
 
         static void Main()
         {
-            
             Initialization();
 
             while (true)
             {
-                ClearMap();
-                FillMap();
-                ViewOnConsole.ViewGame();
+                ViewOnConsole.View(gameState);
 
-                KeybordCommand.DistributeCommand(Console.ReadKey().Key);
-
-                //GameReaction();
+                KeybordCommand.DistrubuteCommand(gameState);
+          
                 Step.Invoke();
 
-                //TODO: переделать
-                DungeonRoom.currentDungeonRoom.roomNextSteep.Invoke();
-
             }
-        }
-
-        private static void ClearMap()
-        {
-            DungeonRoom.currentDungeonRoom.CopyCells();
-        }
-
-        private static void FillMap()
-        {
-            DungeonRoom.currentDungeonRoom.FillMap();
-        }
-        
+        }      
     }
 }

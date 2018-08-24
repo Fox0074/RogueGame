@@ -6,9 +6,26 @@ using System.Threading.Tasks;
 
 namespace RogueLikeGame
 {
-    class KeybordCommand
+    static class KeybordCommand
     {
-        static public void DistributeCommand(ConsoleKey key)
+        static public void DistrubuteCommand(GameState gameState)
+        {
+            var key = Console.ReadKey().Key;
+
+            switch (gameState)
+            {
+                case GameState.game:
+                    GameCommand(key);
+                    break;
+
+                case GameState.inventory:
+                    InventoryCommand(key);
+                    break;
+            }
+
+        }
+
+        static private void GameCommand(ConsoleKey key)
         {
             switch (key)
             {
@@ -31,6 +48,30 @@ namespace RogueLikeGame
 
             }
         }
+        static private void InventoryCommand(ConsoleKey key)
+        {
+            switch (key)
+            {
+                case ConsoleKey.UpArrow:
+                    ActionControl.MoveCommand(direction.up);
+                    break;
+                case ConsoleKey.DownArrow:
+                    ActionControl.MoveCommand(direction.down);
+                    break;
+                case ConsoleKey.RightArrow:
+                    ActionControl.MoveCommand(direction.right);
+                    break;
+                case ConsoleKey.LeftArrow:
+                    ActionControl.MoveCommand(direction.left);
+                    break;
+
+                case ConsoleKey.I:
+                    ActionControl.ShowInventory();
+                    break;
+
+            }
+        }
+
     }
 
     #region Действия

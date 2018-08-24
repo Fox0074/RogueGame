@@ -12,7 +12,7 @@ namespace RogueLikeGame
         public Axe(int playerLevel, int dungeonLevel)
         {
             //TODO: Придумать формулу генерации демага и свойств оружия
-            weaponName = "Топор";
+            name = "Топор";
             damage = 1 * 1 * random.Next(3, 6);
             attackDistance = 1;
             hitChance = 0.6f;

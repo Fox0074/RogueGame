@@ -7,9 +7,10 @@ using static RogueLikeGame.Variables;
 
 namespace RogueLikeGame
 {
-    abstract class BaseWeapon
+    abstract class BaseWeapon : IInventoryObject
     {
-        public string weaponName { get; set; }
+        public string name { get; set; }
+        public string symbol { get; set; }
         public int damage { get; set; }
         public int attackDistance { get; set; }
         public float hitChance { get; set; }

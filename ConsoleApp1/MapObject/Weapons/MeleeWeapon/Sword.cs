@@ -12,7 +12,7 @@ namespace RogueLikeGame
         public Sword(int playerLevel, int dungeonLevel)
         {
             //TODO: Придумать формулу генерации демага и свойств оружия
-            weaponName = "Меч";
+            name = "Меч";
             damage = 1 * 1 * random.Next(3, 7);
             attackDistance = 1;
             hitChance = 0.8f;

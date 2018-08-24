@@ -9,6 +9,7 @@ namespace RogueLikeGame
 {
     class StartDoor : BaseDoor, IMapObject
     {
+        public string name { get; set; } = "Входная дверь";
         public string viewSymbol { get; set; }
         public bool barrier { get; set; }
         public Action<IMapObject> OnTapAction { get; set; }

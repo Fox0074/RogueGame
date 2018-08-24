@@ -10,7 +10,8 @@ namespace RogueLikeGame
 {   
 
     class Player : IMapObject, IDestroy, IStats
-    {      
+    {
+        public string name { get; set; } = "Игрок";
         public Point position { get; set; } = new Point();
         public int numberCurrentRoom { get; set; }
         public string viewSymbol { get; set; }
@@ -21,11 +22,15 @@ namespace RogueLikeGame
         public int currentHealtPoint { get; set; }
         public int maxHealthPoint { get; set; }
         private const int defaultHealthPoint = 100;
+        public bool lifeStatus { get; set; }
+        public ITrophy deathTrophy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public int armor { get; set; }
         public float dodgeChance { get; set; }
         public BaseWeapon weapon { get; set; }
         public LevelSystem level { get; set; }
+
+        public Inventory inventory { get; set; } = new Inventory();
 
         public int strength { get; set; }
         public int agility { get; set; }
@@ -60,28 +65,31 @@ namespace RogueLikeGame
             symbolColor = ConsoleColor.Blue;
             barrier = true;
             OnTapAction += OnTap;
+            lifeStatus = true;
 
             UserInterface.player = this;
             level = new LevelSystem(this);
 
+            inventory.items.Add(weapon);
+
         }
 
-        public void SetDamage(int damage)
+        public void SetDamage(int damage, IMapObject attackingObject)
         {
             if (random.Next(0, 101) > dodgeChance * 100)
             {
                 if (damage - armor > 0)
                 {
                     currentHealtPoint -= damage - armor;
-                    EventLog.doEvent("Игрок получил " + damage + " урона", ConsoleColor.DarkRed);
+                    EventLog.doEvent("Игрок получил " + damage + " урона от:" + attackingObject.name, ConsoleColor.DarkRed);
 
                     ObjectDeath();
                 }
                 else
-                    EventLog.doEvent("Атака по игроку не пробила броню", ConsoleColor.DarkGreen);
+                    EventLog.doEvent("Атака от:" + attackingObject.name + " по игроку не пробила броню", ConsoleColor.DarkGreen);
             }
             else
-                EventLog.doEvent("Уворот, игрок избежал урона", ConsoleColor.DarkGreen);
+                EventLog.doEvent("Уворот, игрок избежал урона от: " + attackingObject.name, ConsoleColor.DarkGreen);
         }
 
         private int GetDamage()
@@ -104,6 +112,10 @@ namespace RogueLikeGame
         {
             if (currentHealtPoint <= 0)
             {
+                lifeStatus = false;
+
+                OnTapAction -= OnTap;
+
                 DungeonRoom.currentDungeonRoom.RemoveFillObject(this);
 
                 EventLog.doEvent("Ебать ты далбоеб, земля тебе пухом братишка", ConsoleColor.DarkRed);
@@ -115,14 +127,20 @@ namespace RogueLikeGame
         public void DoAttack(IDestroy mapObject)
         {
             int damage = GetDamage();
-            mapObject.SetDamage(damage);
+            mapObject.SetDamage(damage, this);
+
+            if (mapObject.lifeStatus == false)
+            {
+                level.AddExperience(mapObject.deathTrophy.experiance);
+            }
+
+
         }
 
         private void SetMaxHealtPoint()
         {
             maxHealthPoint = defaultHealthPoint + stamina * 10;
         }
-
 
         public void OnTap(IMapObject obj)
         {

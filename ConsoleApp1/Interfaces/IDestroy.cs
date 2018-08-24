@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace RogueLikeGame
 {
-    public interface IDestroy
+    public interface IDestroy 
     {
         int currentHealtPoint { get; set; }
         int armor { get; set; }
         float dodgeChance { get; set; }
 
-        void SetDamage(int damage);
+        void SetDamage(int damage, IMapObject attackingObject);
 
         void ObjectDeath ();
+
+        bool lifeStatus { get; set; }
+
+        ITrophy deathTrophy { get; set; }
     }
 }

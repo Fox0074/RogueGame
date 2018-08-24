@@ -10,12 +10,13 @@ namespace RogueLikeGame
     {
         public Fists()
         {
-            weaponName = "Кулаки";
+            name = "Кулаки";
             damage = 3;
             attackDistance = 1;
             hitChance = 0.8f;
             criticalChance = 0.1f;
             criticalModifly = 1.2f;
+            symbol = "F";
         }
     }
 }

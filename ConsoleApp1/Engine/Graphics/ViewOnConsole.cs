@@ -13,21 +13,25 @@ namespace RogueLikeGame
         static int areaWidth;
         static int areaHeight;
         
-        public static void View(string command)
+        public static void View(GameState gameState)
         {
-            switch (command)
+            switch (gameState)
             {
-                case "game":
+                case GameState.game:
                     ViewGame();
                     break;
-                case "inventory":
+                case GameState.inventory:
                     ViewInventory();
                     break;               
             }
         }
 
-        public static void ViewGame()
+        private static void ViewGame()
         {
+            DungeonRoom.currentDungeonRoom.CopyCells();
+
+            DungeonRoom.currentDungeonRoom.FillMap();
+
             areaWidth = (Console.WindowWidth - 2) / 2;
             areaHeight = 7 * (Console.WindowHeight - 2) / 10;
 
@@ -85,18 +89,29 @@ namespace RogueLikeGame
         {
             Console.SetCursorPosition(areaWidth + 1, 0);
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("Здоровье: " + UserInterface.player.currentHealtPoint);
+            Console.WriteLine("Здоровье: " + UserInterface.player.currentHealtPoint + "/" + UserInterface.player.maxHealthPoint);
 
             Console.SetCursorPosition(areaWidth + 1, 2);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Уровень: " + UserInterface.player.level.level);
+
+            Console.SetCursorPosition(areaWidth + 1, 3);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Опыт: " + UserInterface.player.level.currentExperience + "/" + UserInterface.player.level.maxExperience);
+
+            Console.SetCursorPosition(areaWidth + 1, 5);
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("Текущая комната: " + (UserInterface.player.numberCurrentRoom+1) + 
                 " из " + rooms.Count());
         }
 
-        static public void ViewInventory()
+        static private void ViewInventory()
         {
-            Console.Clear();
-            Console.WriteLine("Kek");
+                Console.Clear();
+                foreach (var item in player.inventory.items)
+                {
+                    Console.WriteLine(item.symbol);
+                }              
         }
     }
 }

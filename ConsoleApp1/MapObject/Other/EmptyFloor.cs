@@ -8,6 +8,7 @@ namespace RogueLikeGame
 {
     class EmptyFloor : IMapObject
     {
+        public string name { get; set; } = "Пол";
         public string viewSymbol { get; set; }
         public Action<IMapObject> OnTapAction { get; set; }
         public bool barrier { get; set; }

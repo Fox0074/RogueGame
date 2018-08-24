@@ -8,6 +8,7 @@ namespace RogueLikeGame
 {
     public class Trap : BaseTrap, IMapObject
     {
+        public string name { get; set; } = "Ловушка";
         public string viewSymbol { get; set; }
         public ConsoleColor symbolColor { get; set; }
         public bool barrier { get; set; }
@@ -30,7 +31,7 @@ namespace RogueLikeGame
             var mapObject = obj as IDestroy;
             if (isActivate && mapObject != null)
             {
-                mapObject.SetDamage(10);
+                mapObject.SetDamage(10, this);
                 isActivate = false;
                 symbolColor = ConsoleColor.White;
 

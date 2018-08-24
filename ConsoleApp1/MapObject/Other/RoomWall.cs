@@ -8,6 +8,7 @@ namespace RogueLikeGame
 {
     class RoomWall : IMapObject
     {
+        public string name { get; set; } = "Стена";
         public string viewSymbol { get; set; }
         public bool barrier { get; set; }
         public Action<IMapObject> OnTapAction { get; set; }
