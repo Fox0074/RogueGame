@@ -11,8 +11,6 @@ namespace ConsoleApp1
     {
         static public Action Step = delegate { };
 
-        //private static LevelGenerator levelGenerator = new LevelGenerator();
-
         static public void Initialization()
         {
             rooms.Clear();
