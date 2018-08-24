@@ -3,29 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RogueLikeGame.LevelSystems;
+using static RogueLikeGame.Variables;
 
-namespace ConsoleApp1
-{
-    class Player : IMapObject, IDestroy
-    {
-        public int healtPoint { get; set; }
+namespace RogueLikeGame
+{   
+
+    class Player : IMapObject, IDestroy, IStats
+    {      
         public Point position { get; set; } = new Point();
         public int numberCurrentRoom { get; set; }
-
         public string viewSymbol { get; set; }
-        public Action OnTapAction { get; set; }
+        public Action<IMapObject> OnTapAction { get; set; }
         public bool barrier { get; set; }
         public ConsoleColor symbolColor { get; set; }
+
+        public int currentHealtPoint { get; set; }
+        public int maxHealthPoint { get; set; }
+        private const int defaultHealthPoint = 100;
+
         public int armor { get; set; }
         public float dodgeChance { get; set; }
         public BaseWeapon weapon { get; set; }
+        public LevelSystem level { get; set; }
 
+        public int strength { get; set; }
+        public int agility { get; set; }
+        private int _mstamina;
+        public int stamina
+        {
+            get
+            {
+                return _mstamina;
+            }
 
-        private Random random = new Random();
+            set
+            {
+                currentHealtPoint += (value - _mstamina) * 10;
+                _mstamina = value;
+                SetMaxHealtPoint();
+            }
+        }
 
         public Player()
         {
-            healtPoint = 100;
+            currentHealtPoint = 100;
+
+            strength = 1;
+            agility = 1;
+            stamina = 1;
+
             armor = 0;
             dodgeChance = 0.1f;
             weapon = new Fists();
@@ -35,10 +62,7 @@ namespace ConsoleApp1
             OnTapAction += OnTap;
 
             UserInterface.player = this;
-        }
-
-        public void OnTap()
-        {
+            level = new LevelSystem(this);
 
         }
 
@@ -48,7 +72,7 @@ namespace ConsoleApp1
             {
                 if (damage - armor > 0)
                 {
-                    healtPoint -= damage - armor;
+                    currentHealtPoint -= damage - armor;
                     EventLog.doEvent("Игрок получил " + damage + " урона", ConsoleColor.DarkRed);
 
                     ObjectDeath();
@@ -60,9 +84,25 @@ namespace ConsoleApp1
                 EventLog.doEvent("Уворот, игрок избежал урона", ConsoleColor.DarkGreen);
         }
 
+        private int GetDamage()
+        {
+            //TODO: Продумать зависимость урона, крита, попадания от характеристик
+            if (random.Next(0, 101) <= (weapon.hitChance + agility) * 100)
+            {
+                var damageInflicted = weapon.damage + strength;
+
+                damageInflicted = (random.Next(0, 101) <= (weapon.criticalChance + agility) * 100) ? damageInflicted : (int)(damageInflicted * (weapon.criticalModifly + agility / 10));
+
+                return damageInflicted;
+            }
+
+            return 0;
+
+        }
+
         public void ObjectDeath()
         {
-            if (healtPoint <= 0)
+            if (currentHealtPoint <= 0)
             {
                 DungeonRoom.currentDungeonRoom.RemoveFillObject(this);
 
@@ -70,6 +110,23 @@ namespace ConsoleApp1
 
                 Game.Initialization();
             }
+        }
+
+        public void DoAttack(IDestroy mapObject)
+        {
+            int damage = GetDamage();
+            mapObject.SetDamage(damage);
+        }
+
+        private void SetMaxHealtPoint()
+        {
+            maxHealthPoint = defaultHealthPoint + stamina * 10;
+        }
+
+
+        public void OnTap(IMapObject obj)
+        {
+
         }
     }
 }

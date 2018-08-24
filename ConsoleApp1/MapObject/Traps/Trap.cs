@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     public class Trap : BaseTrap, IMapObject
     {
         public string viewSymbol { get; set; }
         public ConsoleColor symbolColor { get; set; }
         public bool barrier { get; set; }
-        public Action OnTapAction { get; set; }
+        public Action<IMapObject> OnTapAction { get; set; }
 
         private bool isActivate = true;
 
@@ -25,11 +25,12 @@ namespace ConsoleApp1
         }
 
         //TODO: убрать костыль, заменить player на IDestroyable
-        public override void OnTap()
+        public override void OnTap(IMapObject obj)
         {
-            if (isActivate)
+            var mapObject = obj as IDestroy;
+            if (isActivate && mapObject != null)
             {
-                Variables.player.healtPoint -= 10;
+                mapObject.SetDamage(10);
                 isActivate = false;
                 symbolColor = ConsoleColor.White;
 

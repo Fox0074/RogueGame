@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Variables;
+using static RogueLikeGame.Variables;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     public static class ViewOnConsole
     {
@@ -85,7 +85,7 @@ namespace ConsoleApp1
         {
             Console.SetCursorPosition(areaWidth + 1, 0);
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("Здоровье: " + UserInterface.player.healtPoint);
+            Console.WriteLine("Здоровье: " + UserInterface.player.currentHealtPoint);
 
             Console.SetCursorPosition(areaWidth + 1, 2);
             Console.ForegroundColor = ConsoleColor.Gray;

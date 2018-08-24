@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     public interface IMapObject
     {
@@ -12,7 +12,7 @@ namespace ConsoleApp1
         string viewSymbol { get; set; }
         ConsoleColor symbolColor { get; set; }
         bool barrier { get; set; }
-        Action OnTapAction { get; set; }
+        Action<IMapObject> OnTapAction { get; set; }
 
     }
 }

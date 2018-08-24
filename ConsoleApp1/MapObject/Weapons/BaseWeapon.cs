@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Variables;
+using static RogueLikeGame.Variables;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     abstract class BaseWeapon
     {
@@ -15,17 +15,5 @@ namespace ConsoleApp1
         public float hitChance { get; set; }
         public float criticalChance { get; set; }
         public float criticalModifly { get; set; }
-
-        public virtual int GetDamage()
-        {
-            int weaponDamage = 0;
-
-            if (random.Next(0,101) <= hitChance*100)
-            {
-                weaponDamage = (random.Next(0, 101) <= criticalChance * 100) ? damage : (int)(damage * criticalModifly);
-            }
-
-            return weaponDamage;
-        }
     }
 }

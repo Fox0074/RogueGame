@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
-    interface IDestroy
+    public interface IDestroy
     {
-        int healtPoint { get; set; }
+        int currentHealtPoint { get; set; }
         int armor { get; set; }
         float dodgeChance { get; set; }
 

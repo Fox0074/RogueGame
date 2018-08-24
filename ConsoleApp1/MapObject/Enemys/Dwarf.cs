@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     class Dwarf : BaseEnemy
     {
@@ -15,7 +15,7 @@ namespace ConsoleApp1
                     : base(position)
         {
             name = "Гном";
-            healtPoint = random.Next(20, 31);
+            currentHealtPoint = random.Next(20, 31);
             armor = random.Next(0, 2);
             //weapon = new Hammer(1, 1);
             viewSymbol = "D";

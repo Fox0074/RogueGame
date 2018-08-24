@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Variables;
+using static RogueLikeGame.Variables;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     class StartDoor : BaseDoor, IMapObject
     {
         public string viewSymbol { get; set; }
         public bool barrier { get; set; }
-        public Action OnTapAction { get; set; }
+        public Action<IMapObject> OnTapAction { get; set; }
         public ConsoleColor symbolColor { get; set; }
 
         public StartDoor(Point position)
@@ -23,7 +23,7 @@ namespace ConsoleApp1
             this.position = position;
         }
 
-        public void OnTap()
+        public void OnTap(IMapObject obj)
         {           
             player.numberCurrentRoom--;
 

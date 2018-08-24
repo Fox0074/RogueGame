@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Variables;
+using static RogueLikeGame.Variables;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     class ActionControl
     {
@@ -33,13 +33,19 @@ namespace ConsoleApp1
                     break;
             }
 
+            if ((DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x] as IDestroy) != null)
+            {
+                player.DoAttack((DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x] as IDestroy));
+            }
+
             if (!DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].barrier)
             {
                 player.position = new Point(nextPosition);
             }
+
             try
             {
-                DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].OnTapAction.Invoke();
+                DungeonRoom.currentDungeonRoom.currentCells[nextPosition.y, nextPosition.x].OnTapAction.Invoke(player);
             }
             catch (Exception ex)
             {

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     class Skeleton : BaseEnemy
     {
@@ -16,7 +16,7 @@ namespace ConsoleApp1
                    : base(position)
         {
             name = "Скелет";
-            healtPoint = random.Next(10, 16);
+            currentHealtPoint = random.Next(10, 16);
             armor = random.Next(0, 0);
             viewSymbol = "S";
             symbolColor = ConsoleColor.DarkGray;

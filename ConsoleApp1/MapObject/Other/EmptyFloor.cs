@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace RogueLikeGame
 {
     class EmptyFloor : IMapObject
     {
         public string viewSymbol { get; set; }
-        public Action OnTapAction { get; set; }
+        public Action<IMapObject> OnTapAction { get; set; }
         public bool barrier { get; set; }
         public ConsoleColor symbolColor { get; set; }
         public Point position { get ; set; }
@@ -24,7 +24,7 @@ namespace ConsoleApp1
             this.position = position;
         }
 
-        public void OnTap()
+        public void OnTap(IMapObject obj)
         {
 
         }
