@@ -60,10 +60,12 @@
   <ItemGroup>
     <Compile Include="Engine\ActionControl.cs" />
     <Compile Include="Engine\Graphics\UserInterface.cs" />
+    <Compile Include="Engine\Graphics\ViewOnConsole\DrawGameScreen.cs" />
+    <Compile Include="Engine\Graphics\ViewOnConsole\DrawInventoryScreen.cs" />
     <Compile Include="Engine\Inventory\Inventory.cs" />
     <Compile Include="Engine\Log\EventLog.cs" />
     <Compile Include="Engine\Log\LogObject.cs" />
-    <Compile Include="Factory\LevelDifficults\NormalDifficult.cs" />
+    <Compile Include="Factory\LevelDifficults\EasyDifficult.cs" />
     <Compile Include="Factory\Generators\LevelGenerator.cs" />
     <Compile Include="Framework\Variables.cs" />
     <Compile Include="Interfaces\IDestroy.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="MapObject\Doors\ExitDoor.cs" />
     <Compile Include="MapObject\Enemys\Dwarf.cs" />
     <Compile Include="MapObject\Enemys\Skeleton.cs" />
+    <Compile Include="MapObject\Other\MapConteiner.cs" />
     <Compile Include="MapObject\Player.cs" />
     <Compile Include="MapObject\Other\RoomWall.cs" />
     <Compile Include="MapObject\Doors\StartRoom.cs" />
@@ -94,7 +97,7 @@
     <Compile Include="MapObject\Weapons\MeleeWeapon\Sword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Factory\DungeonRoom.cs" />
-    <Compile Include="Engine\Graphics\ViewOnConsole.cs" />
+    <Compile Include="Engine\Graphics\ViewOnConsole\ViewOnConsole.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

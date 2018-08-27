@@ -14,6 +14,7 @@ namespace RogueLikeGame
             //TODO: Придумать формулу генерации демага и свойств оружия
             name = "Меч";
             damage = 1 * 1 * random.Next(3, 7);
+            symbol = "S";
             attackDistance = 1;
             hitChance = 0.8f;
             criticalChance = 0.3f;

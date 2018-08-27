@@ -8,7 +8,7 @@ using static RogueLikeGame.Variables;
 
 namespace RogueLikeGame
 {
-    class NormalDifficult : IDifficultsGenerator
+    class EasyDifficult : IDifficultsGenerator
     {       
         private List<Type> enemyTypes = new List<Type> {
             typeof(Dwarf), typeof(Skeleton) };

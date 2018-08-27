@@ -33,19 +33,24 @@ namespace RogueLikeGame.LevelSystems
             while (currentExperience >= maxExperience)
             {
                 level++;               
-                _mCurrentExperience = currentExperience - maxExperience; //тут set не вызывается 
-                //currentExperience = maxExperience - currentExperience; //а тут вызывается
+                _mCurrentExperience = currentExperience - maxExperience; 
                 maxExperience = (int)(level * 1.5f * 100);
-
+                
                 LevelUp();
             }
         }
 
+
         private void LevelUp()
         {
+            /*
             player.stamina += 1;
             player.agility += 1;
             player.strength += 1;
+            */
+
+            player.freeStats++;
         }
+        
     }
 }

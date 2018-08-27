@@ -15,6 +15,7 @@ namespace RogueLikeGame
             name = "Молот";
             damage = 1 * 1 * random.Next(3, 7);
             attackDistance = 1;
+            symbol = "H";
             hitChance = 0.5f;
             criticalChance = 0.2f;
             criticalModifly = 1.5f;

@@ -27,16 +27,17 @@ namespace RogueLikeGame
 
             DungeonRoom.currentDungeonRoom = rooms[0];
 
-            DungeonRoom.currentDungeonRoom.AddToFill(new Trap(new Point(2,4)));
-
+            //DungeonRoom.currentDungeonRoom.AddToFill(new Trap(new Point(2,4)));
             DungeonRoom.currentDungeonRoom.AddToFill(player);
 
             player.numberCurrentRoom = rooms.IndexOf(DungeonRoom.currentDungeonRoom);       
             player.position = new Point(
                 (DungeonRoom.currentDungeonRoom.currentCells.GetLength(0) - 1)/2,
-                (DungeonRoom.currentDungeonRoom.currentCells.GetLength(1) - 1)/2);
+                (DungeonRoom.currentDungeonRoom.currentCells.GetLength(1) - 1)/2);           
 
             Console.CursorVisible = false;
+
+            player.inventory.AddItems(new List<IInventoryObject> {new Sword(1,1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1) });
         }        
 
         static void Main()
@@ -47,10 +48,11 @@ namespace RogueLikeGame
             {
                 ViewOnConsole.View(gameState);
 
-                KeybordCommand.DistrubuteCommand(gameState);
+                DungeonRoom.currentDungeonRoom.AddToFill(new MapConteiner(new List<IInventoryObject> { new Sword(1, 1) }, new Point(2, 2)));
+
+                KeybordCommand.DistrubuteCommand();
           
                 Step.Invoke();
-
             }
         }      
     }

@@ -11,6 +11,7 @@ namespace RogueLikeGame
     {
         public string name { get; set; }
         public string symbol { get; set; }
+
         public int damage { get; set; }
         public int attackDistance { get; set; }
         public float hitChance { get; set; }

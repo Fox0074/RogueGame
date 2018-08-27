@@ -7,26 +7,12 @@ using static RogueLikeGame.Variables;
 
 namespace RogueLikeGame
 {
-    public static class ViewOnConsole
+    class DrawGameScreen
     {
+        private static int areaWidth;
+        private static int areaHeight;
 
-        static int areaWidth;
-        static int areaHeight;
-        
-        public static void View(GameState gameState)
-        {
-            switch (gameState)
-            {
-                case GameState.game:
-                    ViewGame();
-                    break;
-                case GameState.inventory:
-                    ViewInventory();
-                    break;               
-            }
-        }
-
-        private static void ViewGame()
+        public static void ViewGame()
         {
             DungeonRoom.currentDungeonRoom.CopyCells();
 
@@ -35,15 +21,21 @@ namespace RogueLikeGame
             areaWidth = (Console.WindowWidth - 2) / 2;
             areaHeight = 7 * (Console.WindowHeight - 2) / 10;
 
-            DrawScreen();
+            Console.Clear();
+
+            DrawLines();
+
+            DrawDungeon();
+
+            DrawUI();
+
+            DrawActionLog();
 
             Console.SetCursorPosition(0, 0);
         }
 
-        private static void DrawScreen()
+        private static void DrawLines()
         {
-            Console.Clear();
-
             Console.ForegroundColor = ConsoleColor.White;
 
             for (int i = 0; i < areaHeight; i++)
@@ -58,34 +50,24 @@ namespace RogueLikeGame
             {
                 Console.Write('-');
             }
+        }
 
+        private static void DrawDungeon()
+        {
             Console.SetCursorPosition(0, 0);
 
             for (int i = 0; i < DungeonRoom.currentDungeonRoom.currentCells.GetLength(0); i++)
             {
                 for (int j = 0; j < DungeonRoom.currentDungeonRoom.currentCells.GetLength(1); j++)
                 {
-                    Console.ForegroundColor = DungeonRoom.currentDungeonRoom.currentCells[i, j].symbolColor;                    
-                    Console.Write(DungeonRoom.currentDungeonRoom.currentCells[i,j].viewSymbol + " ");
+                    Console.ForegroundColor = DungeonRoom.currentDungeonRoom.currentCells[i, j].symbolColor;
+                    Console.Write(DungeonRoom.currentDungeonRoom.currentCells[i, j].viewSymbol + " ");
                 }
                 Console.WriteLine();
             }
-
-            DrawUI();
-
-            List<LogObject> logArea = EventLog.GetLastLog();
-            Console.SetCursorPosition(0, areaHeight + 1);
-            foreach (LogObject message in logArea)
-            {
-                Console.ForegroundColor = message.textColor;
-                Console.WriteLine(message.text);
-            }
         }
 
-        /// <summary>
-        /// Вывод пользовательского интерфейса
-        /// </summary>
-        private static void DrawUI( )
+        private static void DrawUI()
         {
             Console.SetCursorPosition(areaWidth + 1, 0);
             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -101,17 +83,20 @@ namespace RogueLikeGame
 
             Console.SetCursorPosition(areaWidth + 1, 5);
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("Текущая комната: " + (UserInterface.player.numberCurrentRoom+1) + 
+            Console.WriteLine("Текущая комната: " + (UserInterface.player.numberCurrentRoom + 1) +
                 " из " + rooms.Count());
+        } 
+
+        private static void DrawActionLog()
+        {
+            List<LogObject> logArea = EventLog.GetLastLog();
+            Console.SetCursorPosition(0, areaHeight + 1);
+            foreach (LogObject message in logArea)
+            {
+                Console.ForegroundColor = message.color;
+                Console.WriteLine(message.message);
+            }
         }
 
-        static private void ViewInventory()
-        {
-                Console.Clear();
-                foreach (var item in player.inventory.items)
-                {
-                    Console.WriteLine(item.symbol);
-                }              
-        }
     }
 }

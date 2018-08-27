@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static RogueLikeGame.Variables;
 
 namespace RogueLikeGame
 {
     static class KeybordCommand
     {
-        static public void DistrubuteCommand(GameState gameState)
+        static public void DistrubuteCommand()
         {
             var key = Console.ReadKey().Key;
 
@@ -43,30 +44,32 @@ namespace RogueLikeGame
                     break;
 
                 case ConsoleKey.I:
-                    ActionControl.ShowInventory();
+                    gameState = GameState.inventory;
+                    ViewOnConsole.View(gameState);
                     break;
 
             }
         }
         static private void InventoryCommand(ConsoleKey key)
         {
+
             switch (key)
             {
                 case ConsoleKey.UpArrow:
-                    ActionControl.MoveCommand(direction.up);
+                    player.inventory.MoveInventory(direction.up);
                     break;
                 case ConsoleKey.DownArrow:
-                    ActionControl.MoveCommand(direction.down);
+                    player.inventory.MoveInventory(direction.down);
                     break;
                 case ConsoleKey.RightArrow:
-                    ActionControl.MoveCommand(direction.right);
+                    player.inventory.MoveInventory(direction.right);
                     break;
                 case ConsoleKey.LeftArrow:
-                    ActionControl.MoveCommand(direction.left);
+                    player.inventory.MoveInventory(direction.left);
                     break;
-
                 case ConsoleKey.I:
-                    ActionControl.ShowInventory();
+                    gameState = GameState.game;
+                    ViewOnConsole.View(gameState);
                     break;
 
             }

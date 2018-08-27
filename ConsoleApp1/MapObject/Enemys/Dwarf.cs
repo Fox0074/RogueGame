@@ -17,7 +17,6 @@ namespace RogueLikeGame
             name = "Гном";
             currentHealtPoint = random.Next(20, 31);
             armor = random.Next(0, 2);
-            //weapon = new Hammer(1, 1);
             viewSymbol = "D";
             symbolColor = ConsoleColor.DarkYellow;
             dodgeChance = 0.1f;
@@ -26,6 +25,9 @@ namespace RogueLikeGame
             System.Reflection.ConstructorInfo ci = weaponType.GetConstructor(new Type[] { typeof(int), typeof(int) });
             object obj = ci.Invoke(new object[] { 1, 1 });
             weapon = obj as BaseWeapon;
+
+            deathTrophy.experiance = 75;
+            deathTrophy.inventoryObjects.Add(weapon);
         }
         
     }

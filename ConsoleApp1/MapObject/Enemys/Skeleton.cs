@@ -27,12 +27,8 @@ namespace RogueLikeGame
             object obj = ci.Invoke(new object[] { 1,1 });
             weapon = obj as BaseWeapon;
 
-
-            //var enemyType = enemysType[(random.Next(0, enemysType.Count))];
-            //ConstructorInfo ci = enemyType.GetConstructor(new Type[] { typeof(Point) });
-            //object Obj = ci.Invoke(new object[] { checkingPosition });
-            //room.roomNextSteep += (Obj as BaseEnemy).CheckPlayer;
-            //room.AddToFill(Obj as BaseEnemy);
+            deathTrophy.experiance = 50;
+            deathTrophy.inventoryObjects.Add(weapon);
         }
 
     }

@@ -10,10 +10,7 @@ namespace RogueLikeGame
     {
         int strength { get; set; }
         int agility { get; set; }
-        int stamina { get; set; }
-        //int level { get; set; }
-        //int currentExperience { get; set; }
-        //int maxExperience { get; set; }
-        
+        int stamina { get; set; }     
+        int freeStats { get; set; }
     }
 }

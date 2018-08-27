@@ -10,5 +10,7 @@ namespace RogueLikeGame
     {
         public int experiance { get; set; }
 
+        public List<IInventoryObject> inventoryObjects { get; set; } = new List<IInventoryObject>();
+
     }
 }

@@ -56,7 +56,7 @@ namespace RogueLikeGame
                 startDoor = new StartDoor(GenerateStartDoor());
                 cells[startDoor.position.y, startDoor.position.x] = startDoor;
             }
-            
+
             CopyCells();
         }
 

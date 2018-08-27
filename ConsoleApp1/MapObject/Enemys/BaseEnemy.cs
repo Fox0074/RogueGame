@@ -30,11 +30,7 @@ namespace RogueLikeGame
 
             barrier = true;
 
-            lifeStatus = true;
-
-            
-
-            deathTrophy.experiance = 100;
+            lifeStatus = true;            
 
             OnTapAction += OnTap;
         }
@@ -111,5 +107,7 @@ namespace RogueLikeGame
                 EventLog.doEvent("Враг сдох", ConsoleColor.DarkYellow);              
             }
         }
+
+
     }
 }

@@ -9,7 +9,7 @@ namespace RogueLikeGame
 {
     static class LevelGenerator
     {
-        public static IDifficultsGenerator difficultGenerator = new NormalDifficult();
+        public static IDifficultsGenerator difficultGenerator = new EasyDifficult();
 
         public static DungeonRoom CreateFillRoom()
         {

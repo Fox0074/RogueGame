@@ -32,6 +32,7 @@ namespace RogueLikeGame
 
         public Inventory inventory { get; set; } = new Inventory();
 
+        public int freeStats { get; set; }
         public int strength { get; set; }
         public int agility { get; set; }
         private int _mstamina;
@@ -67,10 +68,10 @@ namespace RogueLikeGame
             OnTapAction += OnTap;
             lifeStatus = true;
 
+            inventory.items.Add(new Sword(1,1));
+
             UserInterface.player = this;
             level = new LevelSystem(this);
-
-            inventory.items.Add(weapon);
 
         }
 
@@ -132,6 +133,7 @@ namespace RogueLikeGame
             if (mapObject.lifeStatus == false)
             {
                 level.AddExperience(mapObject.deathTrophy.experiance);
+
             }
 
 

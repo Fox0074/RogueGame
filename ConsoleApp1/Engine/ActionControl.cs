@@ -54,19 +54,5 @@ namespace RogueLikeGame
 
             DungeonRoom.currentDungeonRoom.roomNextSteep.Invoke();
         }
-
-        static public void ShowInventory()
-        {
-            while (true)
-            {
-                ViewOnConsole.View(gameState);
-
-                if (Console.ReadKey().Key == ConsoleKey.I)
-                    break;
-
-
-            }
-        }
-
     }
 }

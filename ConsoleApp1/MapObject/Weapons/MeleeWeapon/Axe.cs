@@ -13,6 +13,7 @@ namespace RogueLikeGame
         {
             //TODO: Придумать формулу генерации демага и свойств оружия
             name = "Топор";
+            symbol = "A";
             damage = 1 * 1 * random.Next(3, 6);
             attackDistance = 1;
             hitChance = 0.6f;

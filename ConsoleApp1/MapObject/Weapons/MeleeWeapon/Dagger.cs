@@ -13,6 +13,7 @@ namespace RogueLikeGame
         {
             //TODO: Придумать формулу генерации демага и свойств оружия
             name = "Кинжал";
+            symbol = "D"; 
             damage = 1 * 1 * random.Next(2, 4);
             attackDistance = 1;
             hitChance = 0.9f;
