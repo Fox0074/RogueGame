@@ -43,13 +43,13 @@ namespace RogueLikeGame.LevelSystems
 
         private void LevelUp()
         {
-            /*
+            
             player.stamina += 1;
             player.agility += 1;
             player.strength += 1;
-            */
+            
 
-            player.freeStats++;
+            //player.freeStats++;
         }
         
     }

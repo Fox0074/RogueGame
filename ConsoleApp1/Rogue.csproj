@@ -87,6 +87,8 @@
     <Compile Include="MapObject\Doors\StartRoom.cs" />
     <Compile Include="Framework\Point.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="MapObject\Potions\BasePotion.cs" />
+    <Compile Include="MapObject\Potions\HealthPotions\HealPotion.cs" />
     <Compile Include="MapObject\Traps\BaseTrap.cs" />
     <Compile Include="MapObject\Traps\Trap.cs" />
     <Compile Include="MapObject\Weapons\MeleeWeapon\Axe.cs" />

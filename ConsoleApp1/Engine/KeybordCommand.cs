@@ -67,6 +67,9 @@ namespace RogueLikeGame
                 case ConsoleKey.LeftArrow:
                     player.inventory.MoveInventory(direction.left);
                     break;
+                case ConsoleKey.Enter:
+                    player.inventory.items[player.inventory.insertPosition].Use();
+                    break;
                 case ConsoleKey.I:
                     gameState = GameState.game;
                     ViewOnConsole.View(gameState);

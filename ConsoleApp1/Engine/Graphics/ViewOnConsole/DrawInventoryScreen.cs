@@ -41,6 +41,8 @@ namespace RogueLikeGame
             DrawLines();
 
             DrawInventory();
+
+            DrawDescription();
         }
 
         private static void DrawLines()
@@ -85,8 +87,6 @@ namespace RogueLikeGame
                 {
                     Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
                     Console.Write("[" + player.inventory.items[i].symbol + "]");
-
-                    //Console.SetCursorPosition(Console.CursorLeft + 2, Console.CursorTop);
                 }
                 else
                 {
@@ -95,6 +95,53 @@ namespace RogueLikeGame
 
                 x++;
             }
+        }
+
+        private static void DrawDescription()
+        {
+            int height = 1;
+            if (player.inventory.items.Count > 0)
+            {
+                foreach (string descriptionString in player.inventory.items[player.inventory.insertPosition].description)
+                {
+                    Console.SetCursorPosition(inventoryWidth + 3, height);
+                    if (descriptionString.Length < areaWidth - (inventoryWidth + 3))
+                    {
+                        Console.Write(descriptionString);
+                    }
+                    else
+                    {
+                        foreach (string subString in Cut(descriptionString, areaWidth - (inventoryWidth + 3)))
+                        {
+                            Console.SetCursorPosition(inventoryWidth + 3, height);
+                            Console.Write(subString);
+                            height++;
+                        }
+                    }
+
+                    height++;
+                }
+            }
+            else
+            {
+                Console.SetCursorPosition(inventoryWidth + 3, height);
+                Console.Write("Инвентарь пуст");
+            }
+        }
+
+        private static List<string> Cut(string text, int length)
+        {
+            var result = new List<string>();
+            int pos = 0;
+            while (text.Length > length)
+            {
+                result.Add(text.Substring(0, length));
+                text = text.Remove(0, length);
+                pos++;
+            }
+            result.Add(text);
+
+            return result;
         }
     }
 }

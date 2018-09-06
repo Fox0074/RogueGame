@@ -101,6 +101,9 @@ namespace RogueLikeGame
 
                 DungeonRoom.currentDungeonRoom.RemoveFillObject(this);
 
+                if (deathTrophy.inventoryObjects.Count > 0)
+                    DungeonRoom.currentDungeonRoom.AddToFill(new MapConteiner(deathTrophy.inventoryObjects,position));
+
                 //TODO: переделать
                 DungeonRoom.currentDungeonRoom.roomNextSteep -= CheckPlayer;
 

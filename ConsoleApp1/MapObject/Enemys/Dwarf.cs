@@ -28,6 +28,7 @@ namespace RogueLikeGame
 
             deathTrophy.experiance = 75;
             deathTrophy.inventoryObjects.Add(weapon);
+            if (random.Next(0,2) > 0) deathTrophy.inventoryObjects.Add(new HealPotion());
         }
         
     }

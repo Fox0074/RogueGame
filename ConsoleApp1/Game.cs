@@ -36,8 +36,8 @@ namespace RogueLikeGame
                 (DungeonRoom.currentDungeonRoom.currentCells.GetLength(1) - 1)/2);           
 
             Console.CursorVisible = false;
-
-            player.inventory.AddItems(new List<IInventoryObject> {new Sword(1,1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1) });
+           
+            //player.inventory.AddItems(new List<IInventoryObject> {new Sword(1,1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new Sword(1, 1), new HealPotion() });
         }        
 
         static void Main()
@@ -46,9 +46,7 @@ namespace RogueLikeGame
 
             while (true)
             {
-                ViewOnConsole.View(gameState);
-
-                DungeonRoom.currentDungeonRoom.AddToFill(new MapConteiner(new List<IInventoryObject> { new Sword(1, 1) }, new Point(2, 2)));
+                ViewOnConsole.View(gameState);               
 
                 KeybordCommand.DistrubuteCommand();
           

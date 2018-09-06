@@ -68,8 +68,6 @@ namespace RogueLikeGame
             OnTapAction += OnTap;
             lifeStatus = true;
 
-            inventory.items.Add(new Sword(1,1));
-
             UserInterface.player = this;
             level = new LevelSystem(this);
 
@@ -133,7 +131,6 @@ namespace RogueLikeGame
             if (mapObject.lifeStatus == false)
             {
                 level.AddExperience(mapObject.deathTrophy.experiance);
-
             }
 
 

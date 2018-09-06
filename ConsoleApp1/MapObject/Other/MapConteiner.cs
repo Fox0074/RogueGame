@@ -34,6 +34,7 @@ namespace RogueLikeGame
             {
                 player.inventory.AddItems(items);
                 items.Clear();
+                DungeonRoom.currentDungeonRoom.RemoveFillObject(this);
             }
         }
     }

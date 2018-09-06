@@ -10,5 +10,8 @@ namespace RogueLikeGame
     {
         string name { get; set; }
         string symbol { get; set; }
+        List<string> description { get; set; }
+
+        void Use();
     }
 }

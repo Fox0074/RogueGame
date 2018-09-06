@@ -17,21 +17,32 @@ namespace RogueLikeGame
         //TODO: Переписать для движение вниз и верх
         private int SetInsertPosition(int value)
         {
+            if (value >= items.Count - 1)
+            {
+                value = items.Count - 1;
+            }
+
             if (value <= 0)
             {
                 value = 0;
             }
 
-            if (value >= items.Count-1)
-            {
-                value = items.Count - 1;
-            }
             return value;
         }
 
         public void AddItems(List<IInventoryObject> addingItems)
         {
             items.AddRange(addingItems);
+        }
+        public void AddItems(IInventoryObject addingItems)
+        {
+            items.Add(addingItems);
+        }
+
+        public void RemoveItem(IInventoryObject RemovingItem)
+        {
+            items.Remove(RemovingItem);
+            insertPosition--;
         }
 
         public void MoveInventory(direction direction)
