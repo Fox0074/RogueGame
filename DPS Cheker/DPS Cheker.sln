@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPS Cheker", "DPS Cheker\DPS Cheker.csproj", "{6A11AC54-59FE-44CD-B519-C8DBF3033298}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A11AC54-59FE-44CD-B519-C8DBF3033298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A11AC54-59FE-44CD-B519-C8DBF3033298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A11AC54-59FE-44CD-B519-C8DBF3033298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A11AC54-59FE-44CD-B519-C8DBF3033298}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55542121-875C-4A61-B6C5-5FDCA1A7718D}
+	EndGlobalSection
+EndGlobal
